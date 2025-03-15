@@ -1,0 +1,35 @@
+<%- include('template/header') %>
+<body>
+    <div class="container">
+    <% users.forEach(user => { %>
+        <div class="cardPadding">
+            <div class="card">
+                <div class="tools">
+                    <div class="circle">
+                    <span class="red box"></span>
+                    </div>
+                    <div class="circle">
+                    <span class="yellow box"></span>
+                    </div>
+                    <div class="circle">
+                    <span class="green box"></span>
+                    </div>
+                </div>
+                <div class="card__content">
+                    <p class="name"><%= user.nombre %></p>
+
+                    <% if (user.id_rol == 1) { %>
+                        <p class="name">Funcionario</p>
+                     <% } else if (user.id_rol == 2) { %>
+                        <p class="name">Manager</p>
+                     <% } else { %>
+                        <p class="name">Recursos Humanos</p>
+                     <% } %>
+                     
+                </div>
+            </div>
+        </div>
+    <% }) %>
+    </div>
+</body>
+<%- include('template/footer') %>

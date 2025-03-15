@@ -1,0 +1,118 @@
+/* Contenedor de botones */
+.button-container {
+  display: flex;
+  gap: 20px; /* Espaciado entre botones */
+  justify-content: center;
+}
+
+/* Estilos base */
+.button {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  /* font-family: sans-serif; */
+}
+
+/* Sombra */
+.button .shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+/* Borde exterior */
+.button .edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+/* Parte frontal del botón */
+.button .front {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-size: 1.25rem;
+  color: white;
+  border-radius: 8px;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+/* Hover y estados activos */
+.button:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.button:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.button:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.button:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+/* Verde Pastel Oscuro */
+.button.green-dark .edge {
+  background: linear-gradient(145deg, #0d8336, #086c28);
+}
+
+.button.green-dark .front {
+  background: #01c643; /* Verde pastel oscuro */
+}
+
+.button.green-dark:hover .front {
+  background: #01842a; /* Verde más claro al pasar el mouse */
+}
+
+/* Rojo Pastel Oscuro */
+.button.red-dark .edge {
+  background: linear-gradient(145deg, #820909, #690707);
+}
+
+.button.red-dark .front {
+  background: #D50000; /* Rojo pastel oscuro */
+}
+
+.button.red-dark:hover .front {
+  background: #B80000; /* Rojo más claro al pasar el mouse */
+}
+
+/* White */
+/* White Button */
+.button.white .edge {
+  background: linear-gradient(145deg, #d1d1d1, #a8a8a8); /* Light gray gradient for edge */
+}
+
+.button.white .front {
+  background: #ffffff; /* Pure White */
+  color: #000000; /* Black text for contrast */
+}
+
+.button.white:hover .front {
+  background: #f0f0f0; /* Slightly grayish white on hover */
+}
+
+
