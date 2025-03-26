@@ -1,0 +1,44 @@
+<%- include('template/header') %>
+<body>
+
+    <% if (msg && typeof msg === 'string' && msg.trim() !== '') { %>
+        <div id="toast" class="toast centered"><%= msg %></div>
+        <script>
+          window.addEventListener('DOMContentLoaded', function () {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+              toast.classList.remove('show');
+            }, 4000);
+          });
+        </script>
+      <% } %>
+      
+         
+
+    <!-- From Uiverse.io by VIJAYAACHI --> 
+    <div class="containerRegistro">
+        <div class="form-container">
+            <p class="title">Registro</p>
+            <form id="formRegistro" class="form" action="/registro" method="post">
+                <div class="input-group">
+                    <label for="nombre">Nombre</label>
+                    <input placeholder="" id="nombre" name="nombre" type="text" value="<%= data?.nombre || ''%>"/>
+                </div>
+                <div class="input-group">
+                    <label for="edad">Edad</label>
+                    <input placeholder="" id="edad" name="edad" type="text" value="<%= data?.edad || ''%>"/>
+                    <label for="identificacion">Identificación</label>
+                    <input placeholder="" id="identificacion" name="identificacion" type="text" value="<%= data?.identificacion || ''%>"/>
+                    <label for="contrasenia">Contraseña</label>
+                    <input placeholder="" id="contrasenia" name="contrasenia" type="password" />
+                </div>
+                    <button style="margin-top:6%;" class="sign">Regístrarse</button>
+            </form>
+            <p class="signup">
+                <a rel="noopener noreferrer" href="/login" class="">Volver al Login</a>
+            </p>
+        </div>
+    </div>
+</body>
+<%- include('template/footer') %>
