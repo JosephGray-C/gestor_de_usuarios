@@ -1,16 +1,19 @@
 import { Router } from "express";
 import {
-  getVacaciones,
+  listarVacaciones,
   aceptarVacacion,
   rechazarVacacion,
-  createVacaciones
+  createVacaciones,
+  solicitarVacacion
 } from "../controllers/vacaciones.controller.js";
 
 const router = Router();
 
-router.get("/vacaciones", getVacaciones);
+router.get("/vacaciones", listarVacaciones);
 
-router.get("/vacaciones/crear", createVacaciones)
+router.get("/vacaciones/solicitar", solicitarVacacion);
+
+router.get("/vacaciones/crear", createVacaciones);
 
 router.post("/vacaciones/aceptar/:id/:usuario/:motivo", aceptarVacacion);
 

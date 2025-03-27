@@ -1,31 +1,50 @@
 <%- include('template/header') %>
-<body>
-    <div class="containerLogin">
-    <!-- From Uiverse.io by Yaya12085 --> 
+    <div class="container-login">
+
         <div class="form-container">
+
+            <!-- <div class="tools">
+
+                <div class="circle">
+                    <span class="red box"></span>
+                </div>
+
+                <div class="circle">
+                    <span class="yellow box"></span>
+                </div>
+
+                <div class="circle">
+                    <span class="green box"></span>
+                </div>
+                
+            </div> -->
+
             <p class="title">Inicio de sesión</p>
+
             <form class="form">
+
                 <div class="input-group">
                     <label for="username">Identificación</label>
                     <input type="text" name="username" id="username" placeholder="">
                 </div>
+
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" placeholder="">
+                    <div class="forgot">
+                        <a rel="noopener noreferrer" href="#">Olvidaste tu contraseña ?</a>
+                    </div>
+                </div>
+
+                <button class="sign">Iniciar sesión</button>
+
             </form>
 
-            <div class="input-group">
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password" placeholder="">
-                <div class="forgot">
-                    <a rel="noopener noreferrer" href="#">Olvidaste tu contraseña ?</a>
-                </div>
-            </div>
-            <button class="sign">Iniciar sesión</button>
-                
             <p class="signup">
                 No tienes una cuenta?
                 <a rel="noopener noreferrer" href="/registro" class="">Regístrate</a>
             </p>
+
         </div>
     </div> 
-
-</body>
 <%- include('template/footer') %>

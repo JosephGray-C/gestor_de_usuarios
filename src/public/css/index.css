@@ -4,39 +4,4 @@ body{
     font-weight: 500;
     font-style: normal;
     font-variation-settings: "wdth" 100;
-    color: aliceblue;
-
-    margin: 0;
-    padding-top: 70px;
 }
-
-.container {
-    display: flex; /* or inline-flex */
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px; /* Space between buttons */
-    margin-top: 15px;
-}
-
-.open-sans-text {
-    font-family: "Open Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-variation-settings: "wdth" 100;
-    color: aliceblue;
-}
-
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #111827;
-    color: white;
-    padding: 15px 20px;
-    font-size: 24px;
-    font-weight: bold;
-    z-index: 1000;
-  }

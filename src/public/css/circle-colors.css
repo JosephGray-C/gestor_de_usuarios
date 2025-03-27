@@ -1,0 +1,42 @@
+.tools {
+    display: flex;
+    align-items: center;
+    padding: 1px;
+}
+
+.circle {
+    padding: 0px 4px;
+}
+
+.box {
+    display: inline-block;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    padding: 1px;
+    border-radius: 50%;
+}
+
+.red {
+    background-color: #ff605c;  
+}
+
+.yellow {
+    background-color: #ffbd44;
+}
+
+.green {
+    background-color: #00ca4e;
+}
+
+.blue {
+    background-color: #0014ca;
+}
+
+.purple {
+    background-color: #9e00ca;
+}
+
+.yellow {
+    background-color: #c7ca00;
+}

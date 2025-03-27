@@ -1,7 +1,7 @@
 import { log } from "console";
 import { getConnection, sql } from "../database/connection.js";
 
-export const getVacaciones = async (req, res) => {
+export const listarVacaciones = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool
@@ -10,7 +10,7 @@ export const getVacaciones = async (req, res) => {
     var resJSON = result.recordset;
     console.log(resJSON);
 
-    res.render("vacaciones", { vacaciones: resJSON });
+    res.render("listarVacaciones", { vacaciones: resJSON });
   } catch (error) {
     res.status(500);
     res.send(error.message);
@@ -19,26 +19,48 @@ export const getVacaciones = async (req, res) => {
 
 export const createVacaciones = async (req, res) => {
 
+  if (!req.body.nombre || !req.body.edad || !req.body.identificacion || !req.body.contrasenia) {
+    
+    return res.status(400).render('solicitarVacaciones',
+    {
+      msg: "Ingrese todos los datos solicitados",
+      status: 400,
+      data : req.body
+    });
 
-  
+  }
+
   try {
     const pool = await getConnection();
   
     const result = await pool
       .request()
-      .input("id_usuario", sql.Int, req.body.nombre)
-      .input("id_manager", sql.Int, req.body.edad)
-      .input("id_rrhh", sql.Int, req.body.identificacion)
-      .input("fecha_inicio", sql.Date, req.body.contrasenia)
-      .input("fecha_fin", sql.Date, req.body.contrasenia)
-      .input("motivo", sql.Text, req.body.contrasenia)
+      .input("id_usuario", sql.Int, req.body.id_usuario)
+      .input("id_manager", sql.Int, req.body.id_manager)
+      .input("id_rrhh", sql.Int, req.body.id_rrhh)
+      .input("fecha_inicio", sql.Date, req.body.fecha_inicio)
+      .input("fecha_fin", sql.Date, req.body.fecha_fin)
+      .input("motivo", sql.Text, req.body.motivo)
       .execute("SolicitarVacaciones");
       
     console.log(result.recordset);
 
-    // res.render("vacaciones", { vacaciones: resJSON });
   } catch (error) {
     res.status(500);
+    res.send(error.message);
+  }
+
+};
+
+export const solicitarVacacion = async (req, res) => {
+  try {
+
+
+    
+    res.render("solicitarVacaciones", { data: {} });
+
+  } catch (error) {
+    res.status(400);
     res.send(error.message);
   }
 };
