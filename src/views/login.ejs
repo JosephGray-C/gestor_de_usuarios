@@ -1,23 +1,21 @@
 <%- include('template/header') %>
+
+    <% if (msg && typeof msg === 'string' && msg.trim() !== '') { %>
+        <div id="toast" class="toast centered"><%= msg %></div>
+        <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+            toast.classList.remove('show');
+            }, 4000);
+        });
+        </script>   
+    <% } %>
+
     <div class="container-login">
 
         <div class="form-container">
-
-            <!-- <div class="tools">
-
-                <div class="circle">
-                    <span class="red box"></span>
-                </div>
-
-                <div class="circle">
-                    <span class="yellow box"></span>
-                </div>
-
-                <div class="circle">
-                    <span class="green box"></span>
-                </div>
-                
-            </div> -->
 
             <p class="title">Inicio de sesión</p>
 
@@ -46,5 +44,6 @@
             </p>
 
         </div>
+
     </div> 
 <%- include('template/footer') %>

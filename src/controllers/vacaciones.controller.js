@@ -1,7 +1,10 @@
-import { log } from "console";
 import { getConnection, sql } from "../database/connection.js";
+import { revisarSesion } from "../controllers/revisarSesion.js";
 
 export const listarVacaciones = async (req, res) => {
+
+  revisarSesion(req, res);
+
   try {
     const pool = await getConnection();
     const result = await pool
@@ -19,18 +22,21 @@ export const listarVacaciones = async (req, res) => {
 
 export const createVacaciones = async (req, res) => {
 
-  if (!req.body.nombre || !req.body.edad || !req.body.identificacion || !req.body.contrasenia) {
-    
-    return res.status(400).render('solicitarVacaciones',
-    {
-      msg: "Ingrese todos los datos solicitados",
-      status: 400,
-      data : req.body
-    });
-
-  }
+  revisarSesion(req, res);
 
   try {
+    if (!req.body.nombre || !req.body.edad || !req.body.identificacion || !req.body.contrasenia) {
+      
+      return res.status(400).render('solicitarVacaciones',
+      {
+        msg: "Ingrese todos los datos solicitados",
+        status: 400,
+        data : req.body
+      });
+
+    }
+
+  
     const pool = await getConnection();
   
     const result = await pool
@@ -53,10 +59,11 @@ export const createVacaciones = async (req, res) => {
 };
 
 export const solicitarVacacion = async (req, res) => {
+
+  revisarSesion(req, res);
+
   try {
 
-
-    
     res.render("solicitarVacaciones", { data: {} });
 
   } catch (error) {
@@ -67,12 +74,16 @@ export const solicitarVacacion = async (req, res) => {
 
 
 export const aceptarVacacion = async (req, res) => {
-  console.log(req.params);
-  
-  if (!req.params.id || !req.params.usuario || !req.params.motivo) {
-    return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
-  }
+
+  revisarSesion(req, res);
+
   try {
+    console.log(req.params);
+  
+    if (!req.params.id || !req.params.usuario || !req.params.motivo) {
+      return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
+    }
+
     const pool = await getConnection();
 
     const result = await pool
@@ -92,13 +103,16 @@ export const aceptarVacacion = async (req, res) => {
 };
 
 export const rechazarVacacion = async (req, res) => {
-  console.log(req.params);
 
-  if (!req.params.id || !req.params.usuario || !req.params.motivo) {
-    return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
-  }
+  revisarSesion(req, res);
 
   try {
+    console.log(req.params);
+
+    if (!req.params.id || !req.params.usuario || !req.params.motivo) {
+      return res.status(400).json({ msg: "Bad Request. Please fill all fields" });
+    }  
+
     const pool = await getConnection();
 
     const result = await pool

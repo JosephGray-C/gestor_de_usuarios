@@ -5,10 +5,12 @@ import * as path from 'path'
 import { fileURLToPath } from "url";
 import session from 'express-session'
 
+
 import usuariosRoutes from "./routes/usuarios.routes.js";
 import vacacionesRoutes from "./routes/vacaciones.routes.js";
 import loginRoutes from "./routes/login.routes.js";
 import registroRoutes from "./routes/registro.routes.js";
+import cerrarSesion from "./routes/cerrarSesion.routes.js";
 
 const app = express();
 
@@ -23,6 +25,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(
     session({
         secret : 'gestor de usuarios',
@@ -40,6 +43,7 @@ app.use("/api", usuariosRoutes);
 app.use("/api", vacacionesRoutes);
 
 app.use('/login', loginRoutes);
+app.use('/cerrarSesion', cerrarSesion)
 app.use('/registro', registroRoutes)
 
 export default app;

@@ -1,6 +1,11 @@
 import { getConnection, sql } from "../database/connection.js";
 
+import { revisarSesion } from "../controllers/revisarSesion.js";
+
 export const getUsuarios = async (req, res) => {
+
+  revisarSesion(req, res);
+
   try {
 
     // console.log(req.session);
@@ -15,6 +20,7 @@ export const getUsuarios = async (req, res) => {
       console.log("Session Object Stored: ");
       console.log(sessionData);
       console.log(" ");
+
     })
 
     const pool = await getConnection();
@@ -23,16 +29,12 @@ export const getUsuarios = async (req, res) => {
 
     var resJSON = result.recordset
 
-    // console.log(resJSON)
-
     res.render("listarUsuarios", {usuarios: resJSON});
 
   } catch (error) {
     res.status(500);
 
     res.send(error.message);
-    
-    // res.render("users", error.message)
   }
 };
   
