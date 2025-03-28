@@ -1,36 +1,38 @@
 import { getConnection, sql } from "../database/connection.js";
-import url from 'url';
+import url from "url";
 
 export const getRegistro = async (req, res) => {
-    try {      
+  try {
 
-      res.render("registro", { data: {}, msg : "", status: 0});
+    const mensaje = req.query.msg;
 
-    } catch (error) {
-      console.log(res.status(500));
-      console.log(res.send(error.message));
+    const datos = req.query.data;
 
-      res.redirect(url.format({
-        pathname:"/registro",
-        query: {
-          msg: "Hubo un errror"
-        }          
-      }));
-    }
+    return res.render("registro", 
+      { 
+        msg: mensaje,
+        data: datos
+      }
+    );
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
 };
 
 export const postRegistro = async (req, res) => {
-  try {      
+  try {
     console.log(req.body);
 
     if (!req.body.nombre || !req.body.edad || !req.body.identificacion || !req.body.contrasenia) {
-    
-      return res.status(400).render('registro',
-      {
-        msg: "Ingrese todos los datos solicitados",
-        data: req.body
-      });
-
+      return res.redirect(
+        url.format({
+          pathname: "/registro",
+          query: {
+            msg: "Por favor, ingrese todos los datos solicitados.",
+            data: req.body
+          },
+        })
+      );
     }
 
     const pool = await getConnection();
@@ -42,26 +44,25 @@ export const postRegistro = async (req, res) => {
       .input("identificacion", sql.Text, req.body.identificacion)
       .input("contrasenia", sql.Text, req.body.contrasenia)
       .execute("InsertarUsuario");
-      
-    console.log(result.recordset);   
+
+    console.log(result.recordset);
 
     var user = result.recordset[0];
-      
-    console.log(user);   
+
+    console.log(user);
 
     req.session.user = user;
 
-    res.redirect(url.format({
-      pathname:"/api/usuarios",
-      query: {
-        msg: "Usuario creado correctamente"
-      }          
-    }));
+    return res.redirect(
+      url.format({
+        pathname: "/api/usuarios",
+        query: {
+          msg: "Usuario creado correctamente",
+        },
+      })
+    );
+
   } catch (error) {
-      console.log(error.message)
-      return res.status(400).render('registro',
-      {
-        msg: 'Problema con el proceso de registro '
-      });
+    return res.status(500).send(error.message);
   }
 };

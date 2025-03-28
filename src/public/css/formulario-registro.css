@@ -1,0 +1,18 @@
+/* Registro */
+/* Usa el css base del formulario */
+.container-registro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+    
+    .volverLogin{
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: rgba(156, 163, 175, 1);
+    padding: 4%;
+}

@@ -1,56 +1,63 @@
 import { getConnection, sql } from "../database/connection.js";
-import url from 'url';
+import url from "url";
 
 export const getLogin = async (req, res) => {
-    try {
+  try {
 
-      const mensaje = req.query.msg;
-      
-      res.render("login", { msg: mensaje, data: {} });
+    const mensaje = req.query.msg;
 
-    } catch (error) {
-      res.status(500);
-      res.send(error.message);
-    }
-  };
+    const datos = req.query.data;
 
-  export const postLogin = async (req, res) => {
-    try {
-
-      if (!req.body.identificacion || !req.body.contrasenia) {
-    
-        res.status(400).render('login',
-        {
-          msg: "Ingrese todos los datos solicitados",
-          data: req.body
-        });
-  
+    return res.render("login", 
+      { 
+        msg: mensaje,
+        data: datos 
       }
+    );  
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
 
-      const pool = await getConnection();
-  
-      const result = await pool
-        .request()
-        .input("identificacion", sql.Text, req.body.identificacion)
-        .input("contrasenia", sql.Text, req.body.contrasenia)
-        .execute("IniciarSesion");
-
-      var user = result.recordset[0];
-
-      console.log(user);   
-
-      req.session.user = user;
-      
-      res.redirect(url.format({
-        pathname:"/api/vacaciones/solicitar",
-        query: {
-          msg: "Se ha iniciado sesión correctamente"
-        }          
-      }));
-      
-    } catch (error) {
-      res.status(500); 
-      res.send(error.message);
+export const postLogin = async (req, res) => {
+  try {
+    console.log(req.body)
+    
+    if (!req.body.identificacion || !req.body.contrasenia) {
+      return res.redirect(
+        url.format({
+          pathname: "/login",
+          query: {
+            msg: "Por favor, ingrese todos los datos solicitados.",
+            data: req.body
+          },
+        })
+      );
     }
-  };
 
+    const pool = await getConnection();
+
+    const result = await pool
+      .request()
+      .input("identificacion", sql.Text, req.body.identificacion)
+      .input("contrasenia", sql.Text, req.body.contrasenia)
+      .execute("IniciarSesion");
+
+    var user = result.recordset[0];
+
+    console.log(user);
+
+    req.session.user = user;  
+
+    return res.redirect(
+      url.format({
+        pathname: "/api/vacaciones/solicitar",
+        query: {
+          msg: "Se ha iniciado sesión correctamente",
+        },
+      })
+    );
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};

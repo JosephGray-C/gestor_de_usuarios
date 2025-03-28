@@ -1,19 +1,5 @@
 <%- include('template/header') %>
 
-    <% if (msg && typeof msg === 'string' && msg.trim() !== '') { %>
-      <div id="toast" class="toast centered"><%= msg %></div>
-      <script>
-          window.addEventListener('DOMContentLoaded', function () {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => {
-              toast.classList.remove('show');
-            }, 4000);
-          });
-          window.history.replaceState(null, "", window.location.pathname);
-      </script>
-    <% } %>
-        
     <div class="container-registro">
 
       <div class="form-container">  

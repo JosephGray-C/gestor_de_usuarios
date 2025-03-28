@@ -1,6 +1,6 @@
 import { getConnection, sql } from "../database/connection.js";
 import { revisarSesion } from "../public/js/revisarSesion.js";
-import url from 'url';
+import url from "url";
 
 export const getUsuarios = async (req, res) => {
 
@@ -10,25 +10,25 @@ export const getUsuarios = async (req, res) => {
 
     const pool = await getConnection();
 
-    const result = await pool.request().query("EXEC ObtenerUsuarios");
+    const result = await pool
+      .request()
+      .query("EXEC ObtenerUsuarios");
 
-    var resJSON = result.recordset
+    var usuarios = result.recordset;
 
     const mensaje = req.query.msg;
 
-    
-    res.render("listarUsuarios",
-    {
-      usuarios: resJSON,
-      msg: mensaje,
-      data : {}
-    });
+    return res.render("listarUsuarios", 
+      {
+        usuarios: usuarios,
+        msg: mensaje,
+        data: {},
+      }
+    );
 
   } catch (error) {
-    res.status(500);
 
-    res.send(error.message);
+    return res.status(500).send(error.message);
+    
   }
 };
-
-
