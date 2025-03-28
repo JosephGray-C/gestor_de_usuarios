@@ -19,4 +19,4 @@ router.post("/vacaciones/aceptar/:id/:usuario/:motivo", aceptarVacacion);
 
 router.post("/vacaciones/rechazar/:id/:usuario/:motivo", rechazarVacacion);
 
-export default router;
+export default router; 

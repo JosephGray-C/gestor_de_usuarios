@@ -16,7 +16,7 @@ export const revisarSesion = async (req, res) => {
       }
 
       if (sessionData == undefined) {
-          res.redirect(url.format({
+          return res.redirect(url.format({
             pathname:"/login",
             query: {
               msg: "Debes iniciar sesión"

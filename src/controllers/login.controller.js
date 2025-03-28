@@ -19,7 +19,7 @@ export const getLogin = async (req, res) => {
 
       if (!req.body.identificacion || !req.body.contrasenia) {
     
-        return res.status(400).render('login',
+        res.status(400).render('login',
         {
           msg: "Ingrese todos los datos solicitados",
           data: req.body

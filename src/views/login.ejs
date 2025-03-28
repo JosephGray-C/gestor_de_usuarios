@@ -3,13 +3,14 @@
     <% if (msg && typeof msg === 'string' && msg.trim() !== '') { %>
         <div id="toast" class="toast centered"><%= msg %></div>
         <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => {
-            toast.classList.remove('show');
-            }, 4000);
-        });
+            window.addEventListener('DOMContentLoaded', function () {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+            });
+            window.history.replaceState(null, "", window.location.pathname);
         </script>   
     <% } %>
 
@@ -18,7 +19,7 @@
         <div class="form-container">
 
             <p class="title">Inicio de sesión</p>
-
+  
             <form class="form" action="/login" method="post">
 
                 <div class="input-group">

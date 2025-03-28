@@ -36,28 +36,45 @@ export const createVacaciones = async (req, res) => {
   try {
     if (!req.body.fecha_inicio || !req.body.fecha_fin || !req.body.id_manager || !req.body.id_rrhh || !req.body.motivo) {
       
-      
+      console.log(req.body)
 
-    }
-   
-    const pool = await getConnection();
+      return res.status(400).render('solicitarVacaciones',
+      {
+        msg: "Ingrese todos los datos solicitados",
+        data: req.body,
+        usuarios : []
+      });
+
+      res.redirect(url.format({
+        pathname:"/api/vacaciones/solicitar",
+        query: {
+          msg: "Ingrese todos los datos"
+        }          
+      }));  
   
-    const result = await pool
-      .request()
-      .input("id_usuario", sql.Int, req.body.id_usuario) 
-      .input("id_manager", sql.Int, req.body.id_manager)
-      .input("id_rrhh", sql.Int, req.body.id_rrhh)
-      .input("fecha_inicio", sql.Date, req.body.fecha_inicio)
-      .input("fecha_fin", sql.Date, req.body.fecha_fin)
-      .input("motivo", sql.Text, req.body.motivo)
-      .execute("SolicitarVacaciones");
+
+    }   
+   
+    console.log(req.body)
+
+    // const pool = await getConnection();
+  
+    // const result = await pool
+    //   .request()
+    //   .input("id_usuario", sql.Int, req.body.id_usuario) 
+    //   .input("id_manager", sql.Int, req.body.id_manager)
+    //   .input("id_rrhh", sql.Int, req.body.id_rrhh)
+    //   .input("fecha_inicio", sql.Date, req.body.fecha_inicio)
+    //   .input("fecha_fin", sql.Date, req.body.fecha_fin)
+    //   .input("motivo", sql.Text, req.body.motivo)
+    //   .execute("SolicitarVacaciones");
       
     // res.redirect(url.format({
-    //   pathname:"/misVacaciones",
+    //   pathname:"/listarVacaciones",
     //   query: {
     //     msg: "Vacación creada correctamente"
     //   }          
-    // }));   
+    // }));  
 
   } catch (error) {
     res.status(500);
@@ -76,10 +93,13 @@ export const solicitarVacacion = async (req, res) => {
       .request()
       .query("SELECT * FROM Vista_Managers_Recursos_Humanos");
 
-    var usuarios = result.recordset;
+    var usuarios = result.recordset || req.query.msg;
+
     console.log(usuarios);
 
-    res.render("solicitarVacaciones", { msg : {}, data: {}, usuarios : usuarios });
+    const mensaje = req.query.msg;
+
+    res.render("solicitarVacaciones", { msg : mensaje, data: {}, usuarios : usuarios });
 
   } catch (error) {
     res.status(400);
@@ -93,7 +113,7 @@ export const aceptarVacacion = async (req, res) => {
 
   revisarSesion(req, res);
 
-  try {
+  try {  
     console.log(req.params);
   
     if (!req.params.id || !req.params.usuario || !req.params.motivo) {
