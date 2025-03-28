@@ -13,7 +13,7 @@ router.get("/vacaciones", listarVacaciones);
 
 router.get("/vacaciones/solicitar", solicitarVacacion);
 
-router.get("/vacaciones/crear", createVacaciones);
+router.post("/vacaciones/crear", createVacaciones);
 
 router.post("/vacaciones/aceptar/:id/:usuario/:motivo", aceptarVacacion);
 

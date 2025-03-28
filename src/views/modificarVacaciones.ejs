@@ -1,5 +1,18 @@
 <%- include('template/header') %>
 
+    <% if (msg && typeof msg === 'string' && msg.trim() !== '') { %>
+        <div id="toast" class="toast centered"><%= msg %></div>
+        <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+            toast.classList.remove('show');
+            }, 4000);
+        });
+        </script>   
+    <% } %>
+
     <% vacaciones.forEach(vacacion => { %>
         <div class="container-vacacion-estado">
             <!-- From Uiverse.io by Yaya12085 --> 

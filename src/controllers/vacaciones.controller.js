@@ -1,5 +1,6 @@
 import { getConnection, sql } from "../database/connection.js";
-import { revisarSesion } from "../controllers/revisarSesion.js";
+import { revisarSesion } from "../public/js/revisarSesion.js";
+import url from 'url';
 
 export const listarVacaciones = async (req, res) => {
 
@@ -13,7 +14,15 @@ export const listarVacaciones = async (req, res) => {
     var resJSON = result.recordset;
     console.log(resJSON);
 
-    res.render("listarVacaciones", { vacaciones: resJSON });
+    const mensaje = req.query.msg;
+
+    res.render("listarVacaciones", 
+      { 
+        vacaciones: resJSON,
+        msg : mensaje
+      }
+    );
+
   } catch (error) {
     res.status(500);
     res.send(error.message);
@@ -22,26 +31,20 @@ export const listarVacaciones = async (req, res) => {
 
 export const createVacaciones = async (req, res) => {
 
-  revisarSesion(req, res);
+  await revisarSesion(req, res);
 
   try {
-    if (!req.body.nombre || !req.body.edad || !req.body.identificacion || !req.body.contrasenia) {
+    if (!req.body.fecha_inicio || !req.body.fecha_fin || !req.body.id_manager || !req.body.id_rrhh || !req.body.motivo) {
       
-      return res.status(400).render('solicitarVacaciones',
-      {
-        msg: "Ingrese todos los datos solicitados",
-        status: 400,
-        data : req.body
-      });
+      
 
     }
-
-  
+   
     const pool = await getConnection();
   
     const result = await pool
       .request()
-      .input("id_usuario", sql.Int, req.body.id_usuario)
+      .input("id_usuario", sql.Int, req.body.id_usuario) 
       .input("id_manager", sql.Int, req.body.id_manager)
       .input("id_rrhh", sql.Int, req.body.id_rrhh)
       .input("fecha_inicio", sql.Date, req.body.fecha_inicio)
@@ -49,7 +52,12 @@ export const createVacaciones = async (req, res) => {
       .input("motivo", sql.Text, req.body.motivo)
       .execute("SolicitarVacaciones");
       
-    console.log(result.recordset);
+    // res.redirect(url.format({
+    //   pathname:"/misVacaciones",
+    //   query: {
+    //     msg: "Vacación creada correctamente"
+    //   }          
+    // }));   
 
   } catch (error) {
     res.status(500);
@@ -63,13 +71,21 @@ export const solicitarVacacion = async (req, res) => {
   revisarSesion(req, res);
 
   try {
+    const pool = await getConnection();
+    const result = await pool
+      .request()
+      .query("SELECT * FROM Vista_Managers_Recursos_Humanos");
 
-    res.render("solicitarVacaciones", { data: {} });
+    var usuarios = result.recordset;
+    console.log(usuarios);
+
+    res.render("solicitarVacaciones", { msg : {}, data: {}, usuarios : usuarios });
 
   } catch (error) {
     res.status(400);
     res.send(error.message);
   }
+
 };
 
 
@@ -95,7 +111,13 @@ export const aceptarVacacion = async (req, res) => {
       
     console.log(result.recordset);
 
-    return res.status(200).json({ message: "Vacación aceptada", data: result.recordset });
+    res.redirect(url.format({
+      pathname:"/listarVacaciones",
+      query: {
+        msg: "Vacación aceptada"
+      }          
+    }));
+
   } catch (error) {
     res.status(500);
     res.send(error.message);
@@ -124,7 +146,13 @@ export const rechazarVacacion = async (req, res) => {
 
     console.log(result.recordset);
 
-    return res.status(200).json({ message: "Vacación aceptada", data: result.recordset });
+    res.redirect(url.format({
+      pathname:"/listarVacaciones",
+      query: {
+        msg: "Vacación rechazada"
+      }          
+    }));
+
   } catch (error) {
     res.status(500);
     res.send(error.message);

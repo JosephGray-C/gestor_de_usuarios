@@ -1,37 +1,56 @@
-import { log } from "console";
 import { getConnection, sql } from "../database/connection.js";
-import session from 'express-session'
+import url from 'url';
 
 export const getLogin = async (req, res) => {
     try {
 
-      req.sessionStore.get(req.session.id, (err, sessionData) => {
-        if(err){
-          console.log(err);
-          throw err;
-        }
-        console.log(" ");
-        console.log("Session Object Stored: ");
-        console.log(sessionData);
-        console.log(" ");
-  
-      })
-
-      console.log(" ");
-      console.log("Session Object : ");
-      console.log(req.session);
-      console.log(" ");
-      console.log("Session ID : ");
-      console.log(req.session.id)
-      console.log(" ");
-
-      req.session.visited = true;
-
       const mensaje = req.query.msg;
       
-      res.render("login", { msg: mensaje });
+      res.render("login", { msg: mensaje, data: {} });
+
     } catch (error) {
       res.status(500);
       res.send(error.message);
     }
   };
+
+  export const postLogin = async (req, res) => {
+    try {
+
+      if (!req.body.identificacion || !req.body.contrasenia) {
+    
+        return res.status(400).render('login',
+        {
+          msg: "Ingrese todos los datos solicitados",
+          data: req.body
+        });
+  
+      }
+
+      const pool = await getConnection();
+  
+      const result = await pool
+        .request()
+        .input("identificacion", sql.Text, req.body.identificacion)
+        .input("contrasenia", sql.Text, req.body.contrasenia)
+        .execute("IniciarSesion");
+
+      var user = result.recordset[0];
+
+      console.log(user);   
+
+      req.session.user = user;
+      
+      res.redirect(url.format({
+        pathname:"/api/vacaciones/solicitar",
+        query: {
+          msg: "Se ha iniciado sesión correctamente"
+        }          
+      }));
+      
+    } catch (error) {
+      res.status(500); 
+      res.send(error.message);
+    }
+  };
+

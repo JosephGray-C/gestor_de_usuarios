@@ -1,4 +1,5 @@
 import { getConnection, sql } from "../database/connection.js";
+import url from 'url';
 
 export const cerrarSesion = async (req, res) => {
   try {

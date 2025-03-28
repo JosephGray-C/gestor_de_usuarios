@@ -1,59 +1,69 @@
 <%- include('template/header') %>
 
-<div class="container-listar-usuarios">
-    <% usuarios.forEach(usuario => { %>
-        
-        <div class="usuario-container">
+    <% if (msg && typeof msg === 'string' && msg.trim() !== '') { %>
+        <div id="toast" class="toast centered"><%= msg %></div>
+        <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+            toast.classList.remove('show');
+            }, 4000);
+        });
+        </script>   
+    <% } %>
 
+    <div class="container-listar-usuarios">
 
-            <div class="form-container-listar-usuarios">
+        <% usuarios.forEach(usuario => { %>
+            <div class="usuario-container">
 
-                <% if (usuario.id_rol == 1) { %>
-                    <div class="circle">
-                        <span class="blue box"></span>
-                    </div>
-                <% } else if (usuario.id_rol == 2) { %>
-                    <div class="circle">
-                        <span class="purple box"></span>
-                    </div>
-                <% } else { %>
-                    <div class="circle">
-                        <span class="yellow box"></span>
-                    </div>
-                <% } %>
+                <div class="form-container-listar-usuarios">
 
-                <p class="title">
-                    
-                </p>
-
-                <div class="input-group field">
-                    <label for="rol">Rol del trabajador</label>
                     <% if (usuario.id_rol == 1) { %>
-                        <p class="">Empleado</p>
+                        <div class="circle">
+                            <span class="blue box"></span>
+                        </div>
                     <% } else if (usuario.id_rol == 2) { %>
-                        <p class="">Manager</p>
+                        <div class="circle">
+                            <span class="purple box"></span>
+                        </div>
                     <% } else { %>
-                        <p class="">Recursos Humanos</p>
+                        <div class="circle">
+                            <span class="yellow box"></span>
+                        </div>
                     <% } %>
-                </div>
 
-                <div class="input-group field">
-                    <label for="nombre">Nombre del funcionario</label>
-                    <p><%= usuario.nombre %></p>
-                </div>
+                    <p class="title">
+                        
+                    </p>
 
-                <div class="input-group field">
-                    <label for="nombre">Identificacíon del trabajador</label>
-                    <p><%= usuario.identificacion %></p>
-                </div>
+                    <div class="input-group field">
+                        <label for="rol">Rol del trabajador</label>
+                        <% if (usuario.id_rol == 1) { %>
+                            <p class="">Empleado</p>
+                        <% } else if (usuario.id_rol == 2) { %>
+                            <p class="">Manager</p>
+                        <% } else { %>
+                            <p class="">Recursos Humanos</p>
+                        <% } %>
+                    </div>
 
+                    <div class="input-group field">
+                        <label for="nombre">Nombre del funcionario</label>
+                        <p><%= usuario.nombre %></p>
+                    </div>
+
+                    <div class="input-group field">
+                        <label for="nombre">Identificacíon del trabajador</label>
+                        <p><%= usuario.identificacion %></p>
+                    </div>
+
+                </div>
 
             </div>
-
-        </div>
-
-            
-    <% }) %>
-</div>
+        <% }) %>
+        
+    </div>
 
 <%- include('template/footer') %>

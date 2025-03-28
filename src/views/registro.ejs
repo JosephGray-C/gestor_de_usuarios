@@ -1,56 +1,56 @@
 <%- include('template/header') %>
 
     <% if (msg && typeof msg === 'string' && msg.trim() !== '') { %>
-        <div id="toast" class="toast centered"><%= msg %></div>
-        <script>
-          window.addEventListener('DOMContentLoaded', function () {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => {
-              toast.classList.remove('show');
-            }, 4000);
-          });
-        </script>
-      <% } %>
-      
-<div class="container-registro">
+      <div id="toast" class="toast centered"><%= msg %></div>
+      <script>
+        window.addEventListener('DOMContentLoaded', function () {
+          const toast = document.getElementById('toast');
+          toast.classList.add('show');
+          setTimeout(() => {
+            toast.classList.remove('show');
+          }, 4000);
+        });
+      </script>
+    <% } %>
+        
+    <div class="container-registro">
 
-  <div class="form-container">  
+      <div class="form-container">  
 
-      <p class="title">Registro</p>
+          <p class="title">Registro</p>
 
-      <form action="/registro" method="post">
+          <form action="/registro" method="post">
 
-          <div class="input-group">
-              <label for="nombre">Nombre</label>
-              <input id="nombre" name="nombre" type="text" value="<%= data?.nombre || ''%>"/>
-          </div>
+              <div class="input-group">
+                  <label for="nombre">Nombre</label>
+                  <input id="nombre" name="nombre" type="text" value="<%= data?.nombre || ''%>"/>
+              </div>
 
-          <div class="input-group">
-              <label for="edad">Edad</label>
-              <input id="edad" name="edad" type="text" value="<%= data?.edad || ''%>"/>
-          </div>
+              <div class="input-group">
+                  <label for="edad">Edad</label>
+                  <input id="edad" name="edad" type="text" value="<%= data?.edad || ''%>"/>
+              </div>
 
-          <div class="input-group">
-            <label for="identificacion">Identificación</label>
-            <input id="identificacion" name="identificacion" type="text" value="<%= data?.identificacion || ''%>"/>
-          </div>
-              
-          <div class="input-group">
-            <label for="contrasenia">Contraseña</label>
-            <input id="contrasenia" name="contrasenia" type="password" />
-          </div>
-            
-          <button style="margin-top:6%;" class="sign">Regístrarse</button>
+              <div class="input-group">
+                <label for="identificacion">Identificación</label>
+                <input id="identificacion" name="identificacion" type="text" value="<%= data?.identificacion || ''%>"/>
+              </div>
+                  
+              <div class="input-group">
+                <label for="contrasenia">Contraseña</label>
+                <input id="contrasenia" name="contrasenia" type="password" />
+              </div>
+                
+              <button style="margin-top:6%;" class="sign">Regístrarse</button>
 
-      </form>
+          </form>
 
-      <p class="signup">
-          <a rel="noopener noreferrer" href="/login" class="">Volver al Login</a>
-      </p>
+          <p class="signup">
+              <a rel="noopener noreferrer" href="/login" class="">Volver al Login</a>
+          </p>
 
-  </div>
+      </div>
 
-</div>
+    </div>
 
 <%- include('template/footer') %>
