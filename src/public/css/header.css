@@ -9,4 +9,33 @@ header {
     font-size: 24px;
     font-weight: bold;
     z-index: 1000;
-}
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-container a{
+    color: none;
+  }
+
+  .header-buttons button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color:rgba(167, 139, 250, 1);
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  
+  .header-buttons button:hover {
+    background-color: rgb(145, 108, 255);
+  }
+
+
+  

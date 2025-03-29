@@ -4,7 +4,8 @@ import url from "url";
 
 export const getVacaciones = async (req, res) => {
 
-  revisarSesion(req, res);
+  const sesionValida = await revisarSesion(req, res);
+  if (!sesionValida) return;
 
   try {
 
@@ -36,7 +37,8 @@ export const getVacaciones = async (req, res) => {
 
 export const getSolicitarVacacion = async (req, res) => {
 
-  revisarSesion(req, res);
+  const sesionValida = await revisarSesion(req, res);
+  if (!sesionValida) return;
 
   try {
 
@@ -65,7 +67,8 @@ export const getSolicitarVacacion = async (req, res) => {
 
 export const postCrearVacacion = async (req, res) => {
 
-  await revisarSesion(req, res);
+  const sesionValida = await revisarSesion(req, res);
+  if (!sesionValida) return;
 
   try {
     if (!req.body.fecha_inicio || !req.body.fecha_fin || !req.body.id_manager || !req.body.id_rrhh || !req.body.motivo) {
@@ -108,7 +111,9 @@ export const postCrearVacacion = async (req, res) => {
 };
 
 export const postAceptarVacacion = async (req, res) => {
-  revisarSesion(req, res);
+
+  const sesionValida = await revisarSesion(req, res);
+  if (!sesionValida) return;
 
   try {
     console.log(req.params);
@@ -144,7 +149,9 @@ export const postAceptarVacacion = async (req, res) => {
 };
 
 export const postRechazarVacacion = async (req, res) => {
-  revisarSesion(req, res);
+
+  const sesionValida = await revisarSesion(req, res);
+  if (!sesionValida) return;
 
   try {
     console.log(req.params);

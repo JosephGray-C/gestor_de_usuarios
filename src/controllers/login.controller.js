@@ -21,6 +21,7 @@ export const getLogin = async (req, res) => {
 
 export const postLogin = async (req, res) => {
   try {
+
     console.log(req.body)
     
     if (!req.body.identificacion || !req.body.contrasenia) {

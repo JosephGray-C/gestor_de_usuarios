@@ -42,7 +42,7 @@ color: rgba(243, 244, 246, 1);
 }
 
 .input-group input:focus {
-border-color: rgba(167, 139, 250);
+    border-color: rgba(167, 139, 250);
 }
 
 .forgot {

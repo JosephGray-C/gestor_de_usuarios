@@ -4,7 +4,8 @@ import url from "url";
 
 export const getUsuarios = async (req, res) => {
 
-  revisarSesion(req, res);
+  const sesionValida = await revisarSesion(req, res);
+  if (!sesionValida) return;
 
   try {
 

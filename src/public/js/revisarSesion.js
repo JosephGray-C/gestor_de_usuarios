@@ -14,19 +14,23 @@ export const revisarSesion = async (req, res) => {
       }
 
       if (sessionData == undefined) {
-        return res.redirect(
+        res.redirect(
           url.format({
             pathname: "/login",
             query: {
               msg: "Debes iniciar sesión",
+              data: {}
             },
+            
           })
         );
+        return false;
       }
 
       console.log("Session Object Stored: ");
       console.log(sessionData);
       console.log(" ");
+      return true;
     });
   } catch (error) {
     return res.status(400).send(error.message);
