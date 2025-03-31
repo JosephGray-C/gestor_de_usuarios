@@ -1,4 +1,6 @@
 import { getConnection, sql } from "../database/connection.js";
+import { sesionUsuario } from "../public/js/sesionUsuario.js";
+
 import url from "url";
 
 export const getLogin = async (req, res) => {
@@ -44,12 +46,14 @@ export const postLogin = async (req, res) => {
       .input("contrasenia", sql.Text, req.body.contrasenia)
       .execute("IniciarSesion");
 
-    var user = result.recordset[0];
+    var usuario = result.recordset[0];
 
-    console.log(user);
+    console.log(usuario);
 
-    req.session.user = user;  
+    const usuarioSesion = await  sesionUsuario(req, res, usuario);
+    if (!usuarioSesion) return;
 
+   
     return res.redirect(
       url.format({
         pathname: "/api/vacaciones/solicitar",

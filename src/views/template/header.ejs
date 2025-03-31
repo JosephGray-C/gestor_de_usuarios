@@ -58,26 +58,36 @@
 
           <span class="title">Gestor de Usuarios</span>
 
+          
+
           <div class="header-buttons">
 
-            <a href="/api/vacaciones/solicitar">
-              <button>Solicitar Vacaciones</button>
-            </a>
+            <div class="button-group">
 
-            <a href="/api/vacaciones/solicitar">
-              <button>Solicitar</button>
-            </a>
+              <div class="dropdown">
+                <button class="btn dropdown-toggle">Usuarios </button>
+                <div class="dropdown-menu">
+                  <a href="/api/usuarios">Ver usuarios</a>
+                  <a href="/api/usuarios/">Modificar rol</a>
+                </div>
+              </div>
 
-            <a href="/api/vacaciones/solicitar">
-              <button>Solicitar</button>
-            </a>
+              <div class="dropdown">
+                <button class="btn dropdown-toggle">Vacaciones </button>
+                <div class="dropdown-menu">
+                  <a href="/api/vacaciones">Ver vacaciones</a>
+                  <a href="/api/vacaciones/solicitar">Solicitar vacaciones</a>
+                </div>
+              </div>
 
+              <a class="btn" href="/vacaciones">Cerrar sesión</a>
+
+            </div>
+            
           </div>
 
         </div>
 
       </header>
-
-
 
 </html>

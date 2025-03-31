@@ -4,7 +4,7 @@ import url from "url";
 
 export const getVacaciones = async (req, res) => {
 
-  const sesionValida = await revisarSesion(req, res);
+  const sesionValida = await revisarSesion(req, res); 
   if (!sesionValida) return;
 
   try {
