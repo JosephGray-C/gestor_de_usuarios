@@ -8,13 +8,17 @@
             <form class="form" action="/login" method="post">
 
                 <div class="input-group">
+
                     <label for="identificacion">Identificación</label>
+                    
                     <input type="text" name="identificacion" id="identificacion" value="<%= data?.identificacion || ''%>">
                 </div>
 
                 <div class="input-group">
+
                     <label for="contrasenia">Contraseña</label>
                     <input type="password" name="contrasenia" id="contrasenia" value="">
+
                     <div class="forgot">
                         <a rel="noopener noreferrer" href="#">Olvidaste tu contraseña ?</a>
                     </div>

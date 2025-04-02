@@ -46,6 +46,17 @@ export const postLogin = async (req, res) => {
       .input("contrasenia", sql.Text, req.body.contrasenia)
       .execute("IniciarSesion");
 
+    if (result.recordset[0].Status == 'Failed') {            
+      return res.redirect(
+        url.format({
+        pathname: "/login",
+          query: {
+            msg: "Contraseña o identificación incorrecta",
+          },
+        })
+      );
+    }
+    
     var usuario = result.recordset[0];
 
     console.log(usuario);
@@ -56,7 +67,7 @@ export const postLogin = async (req, res) => {
    
     return res.redirect(
       url.format({
-        pathname: "/api/vacaciones/solicitar",
+        pathname: "/api/usuarios/cambiarRol",
         query: {
           msg: "Se ha iniciado sesión correctamente",
         },

@@ -25,6 +25,9 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+        
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <!-- my css -->
 
@@ -44,50 +47,60 @@
 
     <link rel="stylesheet" href="/css/formulario-solicitar-vacaciones.css" />
 
-    <link rel="stylesheet" href="/css/formulario-modificar-vacaciones.css" />
+    <link rel="stylesheet" href="/css/formulario-gestor-vacaciones.css" />
+
+    <link rel="stylesheet" href="/css/formulario-mis-vacaciones.css" />
+
+    <link rel="stylesheet" href="/css/formulario-vacaciones.css" />
 
     <link rel="stylesheet" href="/css/listar-usuarios.css" />
+
+    <link rel="stylesheet" href="/css/slider.css" />
 
   </head>
 
   <body>
 
+    <div style="padding-bottom: 3%;">
+
       <header>
         
         <div class="header-container">
-
-          <span class="title">Gestor de Usuarios</span>
-
           
-
+          <span class="title">Gestor de Usuarios</span>
+          
           <div class="header-buttons">
-
+            
             <div class="button-group">
-
+              
               <div class="dropdown">
                 <button class="btn dropdown-toggle">Usuarios </button>
                 <div class="dropdown-menu">
                   <a href="/api/usuarios">Ver usuarios</a>
-                  <a href="/api/usuarios/">Modificar rol</a>
+                  <a href="/api/usuarios/cambiarRol">Cambiar rol</a>
                 </div>
               </div>
-
+              
               <div class="dropdown">
                 <button class="btn dropdown-toggle">Vacaciones </button>
                 <div class="dropdown-menu">
                   <a href="/api/vacaciones">Ver vacaciones</a>
+                  <a href="/api/vacaciones/misVacaciones">Ver mis vacaciones</a>
+                  <a href="/api/vacaciones/gestor">Aceptar / Rechazar</a>
                   <a href="/api/vacaciones/solicitar">Solicitar vacaciones</a>
                 </div>
               </div>
-
-              <a class="btn" href="/vacaciones">Cerrar sesión</a>
-
+              
+              <a class="btn" href="/cerrarSesion">Cerrar sesión</a>
+              
             </div>
             
           </div>
-
+          
         </div>
-
+        
       </header>
+
+    </div>
 
 </html>

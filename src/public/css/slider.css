@@ -1,0 +1,37 @@
+.main-container {
+    display: flex;
+    align-items: center;    /* Vertically center */
+    height: 100vh;          /* Full viewport height */
+}
+
+.swiper-container {
+    padding-top: 10%;
+    width: 100%;
+    max-width: 1300px;      /* Optional max width */
+    height: auto;           /* Let it wrap content height */
+    padding: 2rem 0;
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem; /* 👈 pushes cards inward so arrows don’t overlap */
+    box-sizing: border-box;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-pagination {
+    bottom: 50%;
+}
+ 
+.swiper-button-next {
+
+}
+
+.swiper-button-prev {
+
+}

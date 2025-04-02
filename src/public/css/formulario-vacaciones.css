@@ -1,24 +1,18 @@
-/* Listar Usuarios */
+/* Vacaciones */
 /* Usa el css base del formulario */
-
-.container-listar-usuarios{
-    padding: 10rem;
+.container-vacacion{
     display: flex;
-    flex-wrap: wrap ;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
+    margin: 0;
 }
 
-.form-container-usuario {
-    width: 400px;
+.form-container-vacacion {
+    width: 500px;
     border-radius: 0.75rem;
     background-color: rgba(17, 24, 39, 1);
     padding: 2rem;
     color: rgba(243, 244, 246, 1);
 }
-
-
-
-  

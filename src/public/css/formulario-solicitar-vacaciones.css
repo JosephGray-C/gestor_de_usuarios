@@ -1,13 +1,5 @@
 /* Solicitar Vacaciones */
 /* Usa el css base del formulario */
-.form-container-solicitud {
-    width: 520px;
-    border-radius: 0.75rem;
-    background-color: rgba(17, 24, 39, 1);
-    padding: 2rem;
-    color: rgba(243, 244, 246, 1);
-}
-
 .container-solicitud{
     display: flex;
     justify-content: center;
@@ -15,6 +7,14 @@
     height: 100vh;
     background-color: #f4f4f4;
     margin: 0;
+}
+
+.form-container-solicitud {
+    width: 520px;
+    border-radius: 0.75rem;
+    background-color: rgba(17, 24, 39, 1);
+    padding: 2rem;
+    color: rgba(243, 244, 246, 1);
 }
 
 .input-group textarea {

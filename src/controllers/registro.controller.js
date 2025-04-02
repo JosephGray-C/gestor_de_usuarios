@@ -9,7 +9,7 @@ export const getRegistro = async (req, res) => {
     const datos = req.query.data;
 
     return res.render("registro", 
-      { 
+      {   
         msg: mensaje,
         data: datos
       }

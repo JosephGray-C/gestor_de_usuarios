@@ -3,20 +3,26 @@ import {
   getVacaciones,
   postAceptarVacacion,
   postRechazarVacacion,
-  postCrearVacacion,
-  getSolicitarVacacion
+  postSolicitarVacacion,
+  getSolicitarVacacion,
+  getMisVacaciones,
+  getGestorVacaciones
 } from "../controllers/vacaciones.controller.js";
 
 const router = Router();
 
 router.get("/vacaciones", getVacaciones);
 
+router.get("/vacaciones/misVacaciones", getMisVacaciones);
+
 router.get("/vacaciones/solicitar", getSolicitarVacacion);
 
-router.post("/vacaciones/crear", postCrearVacacion);
+router.post("/vacaciones/solicitar", postSolicitarVacacion);
 
-router.post("/vacaciones/aceptar/:id/:usuario/:motivo", postAceptarVacacion);
+router.get("/vacaciones/gestor", getGestorVacaciones);
 
-router.post("/vacaciones/rechazar/:id/:usuario/:motivo", postRechazarVacacion);
+router.post("/vacaciones/aceptar", postAceptarVacacion);
+
+router.post("/vacaciones/rechazar", postRechazarVacacion);
 
 export default router; 
