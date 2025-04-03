@@ -1,81 +1,270 @@
 <%- include('template/header') %>
+
+<h1 class="title-sliders">Vacaciones Pendientes</h1>
+
 <div class="main-container">
     <div class="swiper-container">
       <div class="swiper-wrapper">
             <% vacaciones.forEach(vacacion => { %>
-                <div class="swiper-slide">  
+                <% if (vacacion.estado == 'Pendiente') { %>
+                    <div class="swiper-slide">  
 
-                    <div class="form-container-vacacion">
+                        <div class="form-container-vacacion">
 
-                        <div class="tools">
-                            <% if (vacacion.estado == 'Rechazado') { %>
-                                <div class="circle">
-                                <span class="red box"></span>
+                            <div class="tools">
+                                <% if (vacacion.estado == 'Rechazado') { %>
+                                    <div class="circle">
+                                    <span class="red box"></span>
+                                    </div>
+                                <% } %>
+
+                                <% if (vacacion.estado == 'Pendiente') { %>
+                                    <div class="circle">
+                                    <span class="yellow box"></span>
+                                    </div>
+                                <% } %>
+
+                                <% if (vacacion.estado == 'Aprobado') { %>
+                                    <div class="circle">
+                                    <span class="green box"></span>
+                                    </div>
+                                <% } %>
+                            </div>
+
+                            <p class="title">VACACÍON</p>
+
+                                <div class="input-group field">
+                                    <label for="empleado">Empleado</label>
+                                    <p><%= vacacion.empleado %></p>
                                 </div>
-                            <% } %>
 
-                            <% if (vacacion.estado == 'Pendiente') { %>
-                                <div class="circle">
-                                <span class="yellow box"></span>
-                                </div>
-                            <% } %>
+                                <div class="flex">
 
-                            <% if (vacacion.estado == 'Aprobado') { %>
-                                <div class="circle">
-                                <span class="green box"></span>
+                                    <div class="input-group field">
+                                        <label for="fecha_inicio">Fecha Inicio</label>
+                                        <p>
+                                            <%= parseLocalDate(vacacion.fecha_inicio).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+                                        </p>
+
+                                    </div>
+
+                                    <div class="input-group field">
+                                        <label for="fecha_fin">Fecha Fin</label>
+                                        <p>
+                                            <%= parseLocalDate(vacacion.fecha_fin).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+                                        </p>
+
+                                    </div>
+
                                 </div>
-                            <% } %>
+
+                                <div class="flex">
+
+                                    <div class="input-group">
+                                        <label for="id_manager">Manager</label>
+                                        <p class="text"><%= vacacion.manager %></p>
+                                    </div>
+                                    
+                                    <div class="input-group">
+                                        <label for="id_rrhh">Recursos Humanos</label>
+                                        <p class="text"><%= vacacion.rrhh %></p>
+                                    </div>
+
+                                </div>
+
+                                <div class="input-group field">
+                                    <label for="motivo">Motivo de la solicitud</label>
+                                    <p><%= vacacion.motivo %></p>
+                                </div>
+
                         </div>
-
-                        <p class="title">VACACÍON</p>
-
-                            <div class="input-group field">
-                                <label for="empleado">Empleado</label>
-                                <p><%= vacacion.empleado %></p>
-                            </div>
-
-                            <div class="flex">
-
-                                <div class="input-group field">
-                                    <label for="fecha_inicio">Fecha Inicio</label>
-                                    <p>
-                                        <%= parseLocalDate(vacacion.fecha_inicio).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
-                                    </p>
-
-                                </div>
-
-                                <div class="input-group field">
-                                    <label for="fecha_fin">Fecha Fin</label>
-                                    <p>
-                                        <%= parseLocalDate(vacacion.fecha_fin).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                            <div class="flex">
-
-                                <div class="input-group">
-                                    <label for="id_manager">Manager</label>
-                                    <p class="text"><%= vacacion.manager %></p>
-                                </div>
-                                
-                                <div class="input-group">
-                                    <label for="id_rrhh">Recursos Humanos</label>
-                                    <p class="text"><%= vacacion.rrhh %></p>
-                                </div>
-
-                            </div>
-
-                            <div class="input-group field">
-                                <label for="motivo">Motivo de la solicitud</label>
-                                <p><%= vacacion.motivo %></p>
-                            </div>
-
+                        
                     </div>
-                    
-                </div>
+                <% } %>
+            <% }) %>
+        </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<!--  -->
+
+<h1 class="title-sliders">Vacaciones Aprobadas</h1>
+
+<div class="main-container">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+            <% vacaciones.forEach(vacacion => { %>
+                <% if (vacacion.estado == 'Aprobado') { %>
+                    <div class="swiper-slide">  
+
+                        <div class="form-container-vacacion">
+
+                            <div class="tools">
+                                <% if (vacacion.estado == 'Rechazado') { %>
+                                    <div class="circle">
+                                    <span class="red box"></span>
+                                    </div>
+                                <% } %>
+
+                                <% if (vacacion.estado == 'Pendiente') { %>
+                                    <div class="circle">
+                                    <span class="yellow box"></span>
+                                    </div>
+                                <% } %>
+
+                                <% if (vacacion.estado == 'Aprobado') { %>
+                                    <div class="circle">
+                                    <span class="green box"></span>
+                                    </div>
+                                <% } %>
+                            </div>
+
+                            <p class="title">VACACÍON</p>
+
+                                <div class="input-group field">
+                                    <label for="empleado">Empleado</label>
+                                    <p><%= vacacion.empleado %></p>
+                                </div>
+
+                                <div class="flex">
+
+                                    <div class="input-group field">
+                                        <label for="fecha_inicio">Fecha Inicio</label>
+                                        <p>
+                                            <%= parseLocalDate(vacacion.fecha_inicio).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+                                        </p>
+
+                                    </div>
+
+                                    <div class="input-group field">
+                                        <label for="fecha_fin">Fecha Fin</label>
+                                        <p>
+                                            <%= parseLocalDate(vacacion.fecha_fin).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="flex">
+
+                                    <div class="input-group">
+                                        <label for="id_manager">Manager</label>
+                                        <p class="text"><%= vacacion.manager %></p>
+                                    </div>
+                                    
+                                    <div class="input-group">
+                                        <label for="id_rrhh">Recursos Humanos</label>
+                                        <p class="text"><%= vacacion.rrhh %></p>
+                                    </div>
+
+                                </div>
+
+                                <div class="input-group field">
+                                    <label for="motivo">Motivo de la solicitud</label>
+                                    <p><%= vacacion.motivo %></p>
+                                </div>
+
+                        </div>
+                        
+                    </div>
+                <% } %>
+            <% }) %>
+        </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<!--  -->
+
+<h1 class="title-sliders">Vacaciones Rechazadas</h1>
+
+<div class="main-container">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+            <% vacaciones.forEach(vacacion => { %>
+                <% if (vacacion.estado == 'Rechazado') { %>
+                    <div class="swiper-slide">  
+
+                        <div class="form-container-vacacion">
+
+                            <div class="tools">
+                                <% if (vacacion.estado == 'Rechazado') { %>
+                                    <div class="circle">
+                                    <span class="red box"></span>
+                                    </div>
+                                <% } %>
+
+                                <% if (vacacion.estado == 'Pendiente') { %>
+                                    <div class="circle">
+                                    <span class="yellow box"></span>
+                                    </div>
+                                <% } %>
+
+                                <% if (vacacion.estado == 'Aprobado') { %>
+                                    <div class="circle">
+                                    <span class="green box"></span>
+                                    </div>
+                                <% } %>
+                            </div>
+
+                            <p class="title">VACACÍON</p>
+
+                                <div class="input-group field">
+                                    <label for="empleado">Empleado</label>
+                                    <p><%= vacacion.empleado %></p>
+                                </div>
+
+                                <div class="flex">
+
+                                    <div class="input-group field">
+                                        <label for="fecha_inicio">Fecha Inicio</label>
+                                        <p>
+                                            <%= parseLocalDate(vacacion.fecha_inicio).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+                                        </p>
+
+                                    </div>
+
+                                    <div class="input-group field">
+                                        <label for="fecha_fin">Fecha Fin</label>
+                                        <p>
+                                            <%= parseLocalDate(vacacion.fecha_fin).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="flex">
+
+                                    <div class="input-group">
+                                        <label for="id_manager">Manager</label>
+                                        <p class="text"><%= vacacion.manager %></p>
+                                    </div>
+                                    
+                                    <div class="input-group">
+                                        <label for="id_rrhh">Recursos Humanos</label>
+                                        <p class="text"><%= vacacion.rrhh %></p>
+                                    </div>
+
+                                </div>
+
+                                <div class="input-group field">
+                                    <label for="motivo">Motivo de la solicitud</label>
+                                    <p><%= vacacion.motivo %></p>
+                                </div>
+
+                        </div>
+                        
+                    </div>
+                <% } %>
             <% }) %>
         </div>
 

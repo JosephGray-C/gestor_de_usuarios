@@ -54,6 +54,8 @@ export const getMisVacaciones = async (req, res) => {
 
     console.log(vacaciones);
 
+    console.log(req.session.user.id_usuario)
+
     const mensaje = req.query.msg;
 
     return res.render("misVacaciones", 
@@ -179,8 +181,6 @@ export const postSolicitarVacacion = async (req, res) => {
       .input("fecha_fin", sql.Date, req.body.fecha_fin)
       .input("motivo", sql.Text, req.body.motivo)
       .execute("SolicitarVacaciones");
-
-    console.log(result.recordset);
   
     res.redirect(url.format({
       pathname:"/api/vacaciones/misVacaciones",

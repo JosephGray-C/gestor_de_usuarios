@@ -106,7 +106,7 @@ export const postCambioRol = async (req, res) => {
     
     return res.redirect(
       url.format({
-        pathname: "/api/usuarios",
+        pathname: "/api/usuarios/cambiarRol",
         query: {
           msg: "Se ha cambiado el rol exitosamente",
         },

@@ -64,10 +64,9 @@ export const postLogin = async (req, res) => {
     const usuarioSesion = await  sesionUsuario(req, res, usuario);
     if (!usuarioSesion) return;
 
-   
     return res.redirect(
       url.format({
-        pathname: "/api/usuarios/cambiarRol",
+        pathname: "/api/vacaciones",
         query: {
           msg: "Se ha iniciado sesión correctamente",
         },

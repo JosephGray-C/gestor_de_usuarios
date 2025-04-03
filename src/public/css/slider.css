@@ -1,37 +1,35 @@
 .main-container {
-    display: flex;
-    align-items: center;    /* Vertically center */
-    height: 100vh;          /* Full viewport height */
-}
-
-.swiper-container {
-    padding-top: 10%;
     width: 100%;
-    max-width: 1300px;      /* Optional max width */
-    height: auto;           /* Let it wrap content height */
-    padding: 2rem 0;
+    height: 100%;        
+    display: flex;
+    align-items: center; 
+    /* padding-top: 4%; */
 }
 
 .swiper-wrapper {
     display: flex;
     align-items: center;
-    padding: 0 3rem; /* 👈 pushes cards inward so arrows don’t overlap */
+    padding: 0 1rem; 
     box-sizing: border-box;
+    padding-bottom: 2%;
 }
 
 .swiper-slide {
+    width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.swiper-pagination {
-    bottom: 50%;
+.swiper-container {
+    width: 100%;
+    height: 100%; 
+    position: relative;
+    box-sizing: border-box;
+    padding: 2rem 0;
 }
- 
-.swiper-button-next {
 
-}
-
-.swiper-button-prev {
+.title-sliders{
+    padding-left: 8%;
 
 }

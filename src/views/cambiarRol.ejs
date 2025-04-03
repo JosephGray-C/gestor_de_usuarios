@@ -1,5 +1,6 @@
 <%- include('template/header') %>
 
+<h1 class="title-sliders">Empleados</h1>
 
 <div class="main-container">
   <div class="swiper-container">
@@ -79,7 +80,178 @@
     <div class="swiper-button-prev"></div>
     <div class="swiper-pagination"></div>
   </div>
-</div>
+
   
 
+</div>
+
+<!--  -->
+
+<h1 class="title-sliders">Managers</h1>
+
+<div class="main-container">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <% usuarios.forEach(usuario => { %>
+          <% if (usuario.id_rol == 2) { %>
+              <div class="swiper-slide">  
+                    <form action="cambiarRol" method="post">
+                        <div class="form-container-usuario">
+                            <% if (usuario.id_rol == 1) { %>
+                                <div class="circle">
+                                    <span class="blue box"></span>
+                                </div>
+                            <% } else if (usuario.id_rol == 2) { %>
+                                <div class="circle">
+                                    <span class="purple box"></span>
+                                </div>
+                            <% } else { %>
+                                <div class="circle">
+                                    <span class="yellow box"></span>
+                                </div>
+                            <% } %>
+
+                            <p class="title"></p>
+
+                            <div class="input-group field">
+                                <label for="rol">Rol actual del trabajador</label>
+                                <% if (usuario.id_rol == 1) { %>
+                                <p class="">Empleado</p>
+                                <% } else if (usuario.id_rol == 2) { %>
+                                <p class="">Manager</p>
+                                <% } else { %>
+                                <p class="">Recursos Humanos</p>
+                                <% } %>
+                            </div>
+
+                            <div class="input-group field">
+                                <label for="nombre">Nombre del funcionario</label>
+                                <p><%= usuario.nombre %></p>
+                            </div>
+
+                            <div class="input-group field">
+                                <label for="nombre">Identificacíon del trabajador</label>
+                                <p><%= usuario.identificacion %></p>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="rol">Modificar rol</label>
+                                <select name="id_rol" id="id_rol">
+                                    <option value="">
+                                        Escoge una opción
+                                    </option>
+                                    <% roles.forEach(rol => { %> 
+                                        <% if(rol.id_rol != usuario.id_rol){ %>
+                                            <option value="<%= rol.id_rol %>">
+                                                <%= rol.nombre %>
+                                            </option>
+                                        <% } %> 
+                                    <% }) %>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="id_usuario" id="id_usuario" value="<%= usuario.id_usuario %>">
+
+                            <div class="input-group">                                        
+                                <button class="sign">Cambiar</button>
+                            </div>
+                        
+                        </div>
+                    </form>
+              </div>
+          <% } %>
+        <% }) %>
+      </div>
+  
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<!--  -->
+
+<h1 class="title-sliders">Recursos Humanos</h1>
+
+<div class="main-container">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <% usuarios.forEach(usuario => { %>
+            
+          <% if (usuario.id_rol == 3) { %>
+              <div class="swiper-slide">  
+                    <form action="cambiarRol" method="post">
+                        <div class="form-container-usuario">
+                            <% if (usuario.id_rol == 1) { %>
+                                <div class="circle">
+                                    <span class="blue box"></span>
+                                </div>
+                            <% } else if (usuario.id_rol == 2) { %>
+                                <div class="circle">
+                                    <span class="purple box"></span>
+                                </div>
+                            <% } else { %>
+                                <div class="circle">
+                                    <span class="yellow box"></span>
+                                </div>
+                            <% } %>
+
+                            <p class="title"></p>
+
+                            <div class="input-group field">
+                                <label for="rol">Rol actual del trabajador</label>
+                                <% if (usuario.id_rol == 1) { %>
+                                <p class="">Empleado</p>
+                                <% } else if (usuario.id_rol == 2) { %>
+                                <p class="">Manager</p>
+                                <% } else { %>
+                                <p class="">Recursos Humanos</p>
+                                <% } %>
+                            </div>
+
+                            <div class="input-group field">
+                                <label for="nombre">Nombre del funcionario</label>
+                                <p><%= usuario.nombre %></p>
+                            </div>
+
+                            <div class="input-group field">
+                                <label for="nombre">Identificacíon del trabajador</label>
+                                <p><%= usuario.identificacion %></p>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="rol">Modificar rol</label>
+                                <select name="id_rol" id="id_rol">
+                                    <option value="">
+                                        Escoge una opción
+                                    </option>
+                                    <% roles.forEach(rol => { %> 
+                                        <% if(rol.id_rol != usuario.id_rol){ %>
+                                            <option value="<%= rol.id_rol %>">
+                                                <%= rol.nombre %>
+                                            </option>
+                                        <% } %> 
+                                    <% }) %>
+                                </select>
+                            </div>
+
+                            <input type="hidden" name="id_usuario" id="id_usuario" value="<%= usuario.id_usuario %>">
+
+                            <div class="input-group">                                        
+                                <button class="sign">Cambiar</button>
+                            </div>
+                        
+                        </div>
+                    </form>
+              </div>
+          <% } %>
+        <% }) %>
+      </div>
+  
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+</div>
+    
 <%- include('template/footer') %>

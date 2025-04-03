@@ -1,11 +1,13 @@
 <%- include('template/header') %>
 
+<h1 class="title-sliders">Empleados</h1>
+
 <div class="main-container">
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <% usuarios.forEach(usuario => { %>
+          <% if (usuario.id_rol == 1) { %>
               <div class="swiper-slide">  
-
                 <div class="form-container-usuario">
                     <% if (usuario.id_rol == 1) { %>
                     <div class="circle">
@@ -46,6 +48,8 @@
                 </div>
                 
             </div>
+          <% } %>
+
         <% }) %>
       </div>
   
@@ -55,4 +59,126 @@
     </div>
   </div>
 
+<!--  -->
+
+<h1 class="title-sliders">Managers</h1>
+
+<div class="main-container">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <% usuarios.forEach(usuario => { %>
+          <% if (usuario.id_rol == 2) { %>
+              <div class="swiper-slide">  
+                <div class="form-container-usuario">
+                    <% if (usuario.id_rol == 1) { %>
+                    <div class="circle">
+                    <span class="blue box"></span>
+                    </div>
+                    <% } else if (usuario.id_rol == 2) { %>
+                    <div class="circle">
+                    <span class="purple box"></span>
+                    </div>
+                    <% } else { %>
+                    <div class="circle">
+                    <span class="yellow box"></span>
+                    </div>
+                    <% } %>
+
+                    <p class="title"></p>
+
+                    <div class="input-group field">
+                    <label for="rol">Rol del trabajador</label>
+                    <% if (usuario.id_rol == 1) { %>
+                    <p class="">Empleado</p>
+                    <% } else if (usuario.id_rol == 2) { %>
+                    <p class="">Manager</p>
+                    <% } else { %>
+                    <p class="">Recursos Humanos</p>
+                    <% } %>
+                    </div>
+
+                    <div class="input-group field">
+                    <label for="nombre">Nombre del funcionario</label>
+                    <p><%= usuario.nombre %></p>
+                    </div>
+
+                    <div class="input-group field">
+                    <label for="nombre">Identificacíon del trabajador</label>
+                    <p><%= usuario.identificacion %></p>
+                    </div>
+                </div>
+                
+            </div>
+          <% } %>
+
+        <% }) %>
+      </div>
+  
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+<!--  -->
+
+<h1 class="title-sliders">Recursos Humanos</h1>
+
+<div class="main-container">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <% usuarios.forEach(usuario => { %>
+          <% if (usuario.id_rol == 3) { %>
+              <div class="swiper-slide">  
+                <div class="form-container-usuario">
+                    <% if (usuario.id_rol == 1) { %>
+                    <div class="circle">
+                    <span class="blue box"></span>
+                    </div>
+                    <% } else if (usuario.id_rol == 2) { %>
+                    <div class="circle">
+                    <span class="purple box"></span>
+                    </div>
+                    <% } else { %>
+                    <div class="circle">
+                    <span class="yellow box"></span>
+                    </div>
+                    <% } %>
+
+                    <p class="title"></p>
+
+                    <div class="input-group field">
+                    <label for="rol">Rol del trabajador</label>
+                    <% if (usuario.id_rol == 1) { %>
+                    <p class="">Empleado</p>
+                    <% } else if (usuario.id_rol == 2) { %>
+                    <p class="">Manager</p>
+                    <% } else { %>
+                    <p class="">Recursos Humanos</p>
+                    <% } %>
+                    </div>
+
+                    <div class="input-group field">
+                    <label for="nombre">Nombre del funcionario</label>
+                    <p><%= usuario.nombre %></p>
+                    </div>
+
+                    <div class="input-group field">
+                    <label for="nombre">Identificacíon del trabajador</label>
+                    <p><%= usuario.identificacion %></p>
+                    </div>
+                </div>
+                
+            </div>
+          <% } %>
+
+        <% }) %>
+      </div>
+  
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+  
 <%- include('template/footer') %>
