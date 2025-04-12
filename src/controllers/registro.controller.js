@@ -21,9 +21,10 @@ export const getRegistro = async (req, res) => {
 
 export const postRegistro = async (req, res) => {
   try {
-    console.log(req.body);
 
-    if (!req.body.nombre || !req.body.edad || !req.body.identificacion || !req.body.contrasenia) {
+    // console.log(req.body);
+
+    if (!req.body.nombre || !req.body.edad || !req.body.identificacion || !req.body.contrasenia || !req.body.correo) {
       return res.redirect(
         url.format({
           pathname: "/registro",
@@ -39,13 +40,14 @@ export const postRegistro = async (req, res) => {
 
     const result = await pool
       .request()
-      .input("nombre", sql.Text, req.body.nombre)
+      .input("nombre", sql.Text, req.body.nombre) 
       .input("edad", sql.Int, req.body.edad)
       .input("identificacion", sql.Text, req.body.identificacion)
       .input("contrasenia", sql.Text, req.body.contrasenia)
+      .input("correo", sql.Text, req.body.correo)
       .execute("InsertarUsuario");
 
-    console.log(result.recordset);
+    // console.log(result.recordset);
 
     var user = result.recordset[0];
 

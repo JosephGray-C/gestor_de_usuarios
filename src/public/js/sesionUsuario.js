@@ -18,5 +18,5 @@ export const sesionUsuario = async (req, res, usuario) => {
   } catch (error) {
     return res.status(400).send(error.message);
   }  
+  
 };
-   

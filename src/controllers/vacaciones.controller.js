@@ -52,9 +52,9 @@ export const getMisVacaciones = async (req, res) => {
 
     var vacaciones = result.recordset;
 
-    console.log(vacaciones);
+    // console.log(vacaciones);
 
-    console.log(req.session.user.id_usuario)
+    console.log(req.session.user)
 
     const mensaje = req.query.msg;
 
@@ -125,6 +125,7 @@ export const getGestorVacaciones = async (req, res) => {
     if (vacaciones) {
       console.log("Si VACACIONES")
     }
+
     // console.log(vacaciones);
 
     const mensaje = req.query.msg;
@@ -200,6 +201,7 @@ export const postAceptarVacacion = async (req, res) => {
   if (!sesionValida) return;
 
   try {
+
     console.log(req.body);
 
     if (!req.body.id_vacacion || !req.body.id_usuario || !req.body.motivo) {
@@ -222,7 +224,7 @@ export const postAceptarVacacion = async (req, res) => {
     .input("motivo", sql.Text, req.body.motivo)
     .execute("AceptarVacaciones");
     
-    console.log(result.recordset);
+    // console.log(result.recordset);
     
     return res.redirect(
       url.format({
@@ -243,8 +245,8 @@ export const postRechazarVacacion = async (req, res) => {
   if (!sesionValida) return; 
   
   try {
-    console.log(req.body);
-    
+
+    console.log(req.body);    
 
     if (!req.body.id_vacacion || !req.body.id_usuario || !req.body.motivo) {
       return res.redirect(
@@ -266,7 +268,7 @@ export const postRechazarVacacion = async (req, res) => {
       .input("motivo", sql.Text, req.body.motivo)
       .execute("RechazarVacaciones");
 
-    console.log(result.recordset);
+    // console.log(result.recordset);
 
     return res.redirect(
       url.format({

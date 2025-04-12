@@ -37,9 +37,9 @@ export const postLogin = async (req, res) => {
         })
       );
     }
-
+          
     const pool = await getConnection();
-
+    
     const result = await pool
       .request()
       .input("identificacion", sql.Text, req.body.identificacion)
@@ -72,7 +72,8 @@ export const postLogin = async (req, res) => {
         },
       })
     );
+    
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).send(error.message); 
   }
-};
+}

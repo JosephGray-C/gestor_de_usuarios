@@ -1,5 +1,5 @@
-<%- include('template/header') %>
-    <div class="container-login">
+<div class="container-login">
+        <%- include('template/header') %>
 
         <div class="form-container">
 
@@ -9,7 +9,7 @@
 
                 <div class="input-group">
 
-                    <label for="identificacion">Identificación</label>
+                    <label for="identificacion">Correo electrónico o identificación</label>
                     
                     <input type="text" name="identificacion" id="identificacion" value="<%= data?.identificacion || ''%>">
                 </div>

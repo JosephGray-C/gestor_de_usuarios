@@ -1,5 +1,5 @@
 import express from "express";
-import cors from "cors";
+import  cors from "cors";
 import morgan from "morgan";
 import * as path from 'path'
 import { fileURLToPath } from "url";
