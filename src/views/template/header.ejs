@@ -1,104 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Proyecto</title>
 
-    <!-- google fonts css -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- google fonts css -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-    <!-- Bootstrap css -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-        
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap"
+    rel="stylesheet" />
 
-    <!-- my css -->
+  <!-- Bootstrap css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="/css/circle-colors.css" />
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <link rel="stylesheet" href="/css/header.css" />
+  <!-- my css -->
 
-    <link rel="stylesheet" href="/css/index.css" />
+  <link rel="stylesheet" href="/css/circle-colors.css" />
 
-    <link rel="stylesheet" href="/css/mensaje.css" />
+  <link rel="stylesheet" href="/css/header.css" />
 
-    <link rel="stylesheet" href="/css/formulario.css" />
+  <link rel="stylesheet" href="/css/index.css" />
 
-    <link rel="stylesheet" href="/css/formulario-login.css" />
+  <link rel="stylesheet" href="/css/mensaje.css" />
 
-    <link rel="stylesheet" href="/css/formulario-registro.css" />
+  <link rel="stylesheet" href="/css/formulario.css" />
 
-    <link rel="stylesheet" href="/css/formulario-solicitar-vacaciones.css" />
+  <link rel="stylesheet" href="/css/formulario-login.css" />
 
-    <link rel="stylesheet" href="/css/formulario-gestor-vacaciones.css" />
+  <link rel="stylesheet" href="/css/formulario-registro.css" />
 
-    <link rel="stylesheet" href="/css/formulario-mis-vacaciones.css" />
+  <link rel="stylesheet" href="/css/formulario-solicitar-vacaciones.css" />
 
-    <link rel="stylesheet" href="/css/formulario-vacaciones.css" />
+  <link rel="stylesheet" href="/css/formulario-gestor-vacaciones.css" />
 
-    <link rel="stylesheet" href="/css/listar-usuarios.css" />
+  <link rel="stylesheet" href="/css/formulario-mis-vacaciones.css" />
 
-    <link rel="stylesheet" href="/css/slider.css" />
+  <link rel="stylesheet" href="/css/formulario-vacaciones.css" />
 
-  </head>
+  <link rel="stylesheet" href="/css/listar-usuarios.css" />
 
-  <body>
+  <link rel="stylesheet" href="/css/slider.css" />
 
-    <div style="padding-bottom: 7%;">
+  <link rel="stylesheet" href="/css/inicio.css" />
 
-      <header>
-        
-        <div class="header-container">
-          
+  <link rel="stylesheet" href="/css/perfil.css" />
+</head>
+
+<body>
+
+  <div style="padding-bottom: 7%;">
+
+    <header>
+
+      <div class="header-container">
+        <a href="/inicio">
           <span class="title">Gestor de Usuarios</span>
-          
+        <a>
+  
+        <% if (isAuthenticated) { %>
           <div class="header-buttons">
-            
+
             <div class="button-group">
-              
-              <div class="dropdown">
-                <button class="btn dropdown-toggle">Usuarios </button>
-                <div class="dropdown-menu">
-                  <a href="/api/usuarios">Ver usuarios</a>
-                  <a href="/api/usuarios/cambiarRol">Cambiar rol</a>
+
+             <a class="btn" href="/perfil">Perfil</a>
+
+              <% if (userRole > 1) { %> 
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle">Usuarios </button>
+                  <div class="dropdown-menu">
+
+                    <% if (userRole == 4) { %> 
+                      <a href="/api/usuarios/cambiarRol">Cambiar rol</a>
+                    <% } %>
+
+                    <a href="/api/usuarios">Ver usuarios</a>
+                    
+                  </div>
                 </div>
-              </div>
-              
+              <% } %>
               <div class="dropdown">
                 <button class="btn dropdown-toggle">Vacaciones </button>
                 <div class="dropdown-menu">
-                  <a href="/api/vacaciones">Ver vacaciones</a>
-                  <a href="/api/vacaciones/misVacaciones">Ver mis vacaciones</a>
-                  <a href="/api/vacaciones/gestor">Aceptar / Rechazar</a>
-                  <a href="/api/vacaciones/solicitar">Solicitar vacaciones</a>
+                  <% if (userRole > 1) { %>         
+                    
+                    <a href="/api/vacaciones/gestor">Aceptar / Rechazar</a>
+                    
+                    <a href="/api/vacaciones">Ver vacaciones</a>
+                    
+                    <% } %>
+
+                    <a href="/api/vacaciones/solicitar">Solicitar vacaciones</a>
+                    
+                    <a href="/api/vacaciones/misVacaciones">Ver mis vacaciones</a>
+
                 </div>
               </div>
-              
               <a class="btn" href="/cerrarSesion">Cerrar sesión</a>
-              
-            </div>
-            
-          </div>
-          
-        </div>
-        
-      </header>
 
-    </div>
+            </div>
+
+          </div>
+        <% } %>
+      </div>
+
+    </header>
+
+  </div>

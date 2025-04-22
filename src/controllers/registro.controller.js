@@ -22,8 +22,6 @@ export const getRegistro = async (req, res) => {
 export const postRegistro = async (req, res) => {
   try {
 
-    // console.log(req.body);
-
     if (!req.body.nombre || !req.body.edad || !req.body.identificacion || !req.body.contrasenia || !req.body.correo) {
       return res.redirect(
         url.format({
@@ -47,17 +45,13 @@ export const postRegistro = async (req, res) => {
       .input("correo", sql.Text, req.body.correo)
       .execute("InsertarUsuario");
 
-    // console.log(result.recordset);
-
     var user = result.recordset[0];
-
-    console.log(user);
 
     req.session.user = user;
 
     return res.redirect(
       url.format({
-        pathname: "/api/usuarios",
+        pathname: "/inicio",
         query: {
           msg: "Usuario creado correctamente",
         },

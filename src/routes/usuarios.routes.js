@@ -5,10 +5,12 @@ import {
   postCambioRol
 } from "../controllers/usuarios.controller.js";
 
+import { verificarSesion } from "../middlewares/auth.js";
+
 const router = Router();
 
-router.get("/usuarios", getUsuarios);
-router.get("/usuarios/cambiarRol", getCambioRol);
-router.post("/usuarios/cambiarRol", postCambioRol);
+router.get("/usuarios",verificarSesion, getUsuarios);
+router.get("/usuarios/cambiarRol",verificarSesion, getCambioRol);
+router.post("/usuarios/cambiarRol",verificarSesion, postCambioRol);
 
 export default router;

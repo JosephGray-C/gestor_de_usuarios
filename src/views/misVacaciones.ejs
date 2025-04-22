@@ -2,8 +2,10 @@
 <div class="main-container">
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            <% let tieneVacaciones = false; %>
             <% vacaciones.forEach(vacacion => { %>
                 <% if (vacacion.empleado_id == usuario.id_usuario) { %>
+                    <% tieneVacaciones = true; %>
                     <div class="swiper-slide"> 
                         <div class="form-container-mis-vacaciones">
 
@@ -27,7 +29,7 @@
                                 <% } %>
                             </div>
 
-                            <p class="title">VACACÍON</p>
+                            <p class="title">VACACIÓN</p>
 
                             <div class="input-group field">
                                 <label for="empleado">Empleado</label>
@@ -40,7 +42,6 @@
                                     <p>
                                         <%= parseLocalDate(vacacion.fecha_inicio).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) %>
                                     </p>
-
                                 </div>
 
                                 <div class="input-group field">
@@ -68,16 +69,29 @@
                                 <p><%= vacacion.motivo %></p>
                             </div>
 
+                            <div class="input-group field">
+                                <% if(vacacion.estado == 'Aprobado') {%>
+                                    <label for="motivo">Motivo de aprobación</label>
+                                <% } else {%>
+                                    <label for="motivo">Motivo del rechazo</label>
+                                <%}%>
+                                <p><%= vacacion.motivo_gestado %></p>
+                            </div>
+
                         </div>
                     </div>
                 <% } %>
-            <% }) %>
-        </div>
+            <% }); %>
 
+        </div>
+        
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
 </div>
 
+<% if (!tieneVacaciones) { %>
+    <p class="null">Aún no tienes vacaciones registradas.</p>
+<% } %>
 <%- include('template/footer') %>

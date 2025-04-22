@@ -1,0 +1,83 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #f9f9f9;
+}
+
+.profile-card {
+  background-color: #1c1c1c; /* Fondo oscuro */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  color: #fff; /* Texto blanco */
+}
+
+.profile-card .title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #fff; /* Título blanco */
+}
+
+.profile-info .input-group {
+  margin-bottom: 15px;
+}
+
+.profile-info label {
+  display: block;
+  font-weight: bold;
+  color: #ccc; /* Texto gris claro */
+  margin-bottom: 5px;
+}
+
+.profile-info p {
+  margin: 0;
+  color: #fff; /* Texto blanco */
+  background-color: #333; /* Fondo oscuro para los datos */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status {
+  font-weight: bold;
+  padding: 5px 15px; /* Ajusta el tamaño del relleno */
+  border-radius: 20px; /* Bordes más redondeados */
+  display: inline-block; /* Asegura que sea un bloque en línea */
+  text-align: center; /* Centra el texto */
+  font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+  margin-top: 5px; /* Espaciado superior */
+}
+
+.status.online {
+  color: #fff;
+  background-color: #28a745; /* Verde para "En línea" */
+}
+
+.status.offline {
+  color: #fff;
+  background-color: #dc3545; /* Rojo para "Desconectado" */
+}
+
+button.sign {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.sign:hover {
+  background-color: #0056b3;
+}
+
+select {
+  background-color: #333; /* Fondo oscuro */
+  color: #fff; /* Texto blanco */
+  border: 1px solid #555;
+  padding: 5px;
+  border-radius: 5px;
+}

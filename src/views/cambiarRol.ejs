@@ -54,7 +54,7 @@
                                         Escoge una opción
                                     </option>
                                     <% roles.forEach(rol => { %> 
-                                        <% if(rol.id_rol != usuario.id_rol){ %>
+                                        <% if(rol.id_rol != usuario.id_rol){ %>                                           
                                             <option value="<%= rol.id_rol %>">
                                                 <%= rol.nombre %>
                                             </option>
@@ -63,7 +63,10 @@
                                 </select>
                             </div>
 
+                            <!-- <input type="hidden" name="nombre_rol" id="nombre_rol" value=""> -->
                             <input type="hidden" name="id_usuario" id="id_usuario" value="<%= usuario.id_usuario %>">
+                            <input type="hidden" name="correo" id="correo" value="<%= usuario.correo %>">
+
 
                         <div class="input-group">                                        
                             <button class="sign">Cambiar</button>

@@ -1,18 +1,10 @@
 export const sesionUsuario = async (req, res, usuario) => {
   try {
 
-    console.log(" ");
-    console.log("(Revisión de sesión)Session ID: ");
-    console.log(req.session.id);
-    console.log(" ");
-
     req.session.user = usuario;
 
-    console.log(" ");
-    console.log("Session : ");
-    console.log(req.session);
-    console.log(" ");
-    
+    console.log(req.session.user)
+
     return true;
 
   } catch (error) {

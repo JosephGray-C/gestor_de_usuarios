@@ -9,3 +9,12 @@ body{
 body, html {
     overflow-x: hidden;
 }
+
+.null {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100%; /* Asegúrate de que el contenedor tenga una altura definida */
+  font-size: 1.2rem;
+  color: #555;
+}

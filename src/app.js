@@ -1,15 +1,20 @@
 import express from "express";
 import  cors from "cors";
 import morgan from "morgan";
-import * as path from 'path'
+import * as path from 'path';
 import { fileURLToPath } from "url";
-import session from 'express-session'
+import session from 'express-session';
 
 import usuariosRoutes from "./routes/usuarios.routes.js";
 import vacacionesRoutes from "./routes/vacaciones.routes.js";
 import loginRoutes from "./routes/login.routes.js";
 import registroRoutes from "./routes/registro.routes.js";
+import inicioRoutes from "./routes/inicio.routes.js";
+import perfilRoutes from "./routes/perfil.routes.js";
+
 import cerrarSesion from "./routes/cerrarSesion.routes.js";
+
+import { noCache } from "./middlewares/cache.js";
 
 const app = express();
 
@@ -36,7 +41,20 @@ app.use(
     })
 );
 
+app.use(noCache); 
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = !!req.session.user;
+  next();
+});
+
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/', loginRoutes);
+
+app.use('/inicio', inicioRoutes);
+
+app.use('/perfil', perfilRoutes);
 
 app.use("/api", usuariosRoutes);
 app.use("/api", vacacionesRoutes);

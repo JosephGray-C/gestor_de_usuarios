@@ -17,6 +17,12 @@ header {
   align-items: center;
 }
 
+.header-container span {
+  color: #cbd5e1; /* Color del texto del contenedor */
+  font-size: 24px;
+  font-weight: bold;
+}
+
 a {
   text-decoration: none;
   border: none;

@@ -11,47 +11,35 @@ export const cerrarSesion = async (req, res) => {
           pathname: "/login",
           query: {
             msg: "Debes iniciar sesión",
-            data: {},
           },
         })
       );  
 
     }
-
-    // const pool = await getConnection();
     
-    // const result = await pool
-    //   .request()
-    //   .input("identificacion", sql.Text, req.body.identificacion)
-    //   .input("contrasenia", sql.Text, req.body.contrasenia)
-    //   .execute("IniciarSesion");
+    const pool = await getConnection();
 
-    // if (result.recordset[0].Status == 'Failed') {            
-    //   return res.redirect(
-    //     url.format({
-    //     pathname: "/login",
-    //       query: {
-    //         msg: "Contraseña o identificación incorrecta",
-    //       },
-    //     })
-    //   );
-    // }
-    
-    // var usuario = result.recordset[0];
+    const result = await pool
+      .request()
+      .input("id_usuario", sql.Int, req.session.user.id_usuario)
+      .execute("CerrarSesion");
 
-    // console.log(usuario);
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Error al destruir la sesión:", err);
+        return res.status(500).send("Error al cerrar sesión");
+      }
+      return res
+              .clearCookie("session_id", { path: "/" })
+              .redirect(
+                url.format({
+                  pathname: "/login",
+                  query: {
+                    msg: "Se ha cerrado sesión correctamente",
+                  },
+                })); 
+    });
 
-    req.session.destroy();
-    return res.redirect(
-      url.format({
-        pathname: "/login",
-        query: {
-          msg: "Se ha cerrado sesión correctamente",
-          data: req.body
-        },
-      })
-    ); 
-    
   } catch (error) {
 
     return res.status(500).send(error.message);

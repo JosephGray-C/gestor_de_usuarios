@@ -1,6 +1,5 @@
 import { getConnection, sql } from "../database/connection.js";
 import { sesionUsuario } from "../public/js/sesionUsuario.js";
-
 import url from "url";
 
 export const getLogin = async (req, res) => {
@@ -13,7 +12,7 @@ export const getLogin = async (req, res) => {
     return res.render("login", 
       { 
         msg: mensaje,
-        data: datos 
+        data: datos,
       }
     );  
   } catch (error) {
@@ -24,8 +23,6 @@ export const getLogin = async (req, res) => {
 export const postLogin = async (req, res) => {
   try {
 
-    console.log(req.body)
-    
     if (!req.body.identificacion || !req.body.contrasenia) {
       return res.redirect(
         url.format({
@@ -36,7 +33,7 @@ export const postLogin = async (req, res) => {
           },
         })
       );
-    }
+    };
           
     const pool = await getConnection();
     
@@ -55,25 +52,26 @@ export const postLogin = async (req, res) => {
           },
         })
       );
-    }
+    };
     
     var usuario = result.recordset[0];
-
-    console.log(usuario);
 
     const usuarioSesion = await  sesionUsuario(req, res, usuario);
     if (!usuarioSesion) return;
 
     return res.redirect(
       url.format({
-        pathname: "/api/vacaciones",
+        pathname: "/inicio",
         query: {
           msg: "Se ha iniciado sesión correctamente",
         },
+
       })
     );
     
   } catch (error) {
+
     return res.status(500).send(error.message); 
+
   }
 }

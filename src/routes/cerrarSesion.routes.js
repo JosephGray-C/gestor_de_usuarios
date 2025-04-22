@@ -3,8 +3,10 @@ import {
   cerrarSesion,
 } from "../controllers/cerrarSesion.controller.js";
 
+import { verificarSesion } from "../middlewares/auth.js";
+
 const router = Router();
 
-router.get("/", cerrarSesion);
+router.get("/", verificarSesion, cerrarSesion);
 
 export default router;

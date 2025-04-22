@@ -7,16 +7,14 @@ export const dbSettings = {
   server: DB_SERVER,
   database: DB_DATABASE,
   options: {
-    encrypt: false, // for azure
-    trustServerCertificate: true, // change to true for local dev / self-signed certs
+    encrypt: false, 
+    trustServerCertificate: true, 
   },
 };
 
 export const getConnection = async () => {
   try {
     const pool = await sql.connect(dbSettings);
-    // const result = await pool.request().query("SELECT GETDATE()");
-    // console.log(result)
     return pool;
   } catch (error) {
     console.error(error);

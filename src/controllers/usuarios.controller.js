@@ -1,12 +1,8 @@
 import { getConnection, sql } from "../database/connection.js";
-import { revisarSesion } from "../public/js/revisarSesion.js";
 import url from "url";
+import { sendMail } from "../public/js/sender.js";  
 
 export const getUsuarios = async (req, res) => {
-
-  const sesionValida = await revisarSesion(req, res);
-  if (!sesionValida) return;
-
   try {
 
     const pool = await getConnection();
@@ -24,6 +20,7 @@ export const getUsuarios = async (req, res) => {
         usuarios: usuarios,  
         msg: mensaje,
         data: {},
+        userRole: req.session.user.id_rol,
       }
     );
 
@@ -35,10 +32,6 @@ export const getUsuarios = async (req, res) => {
 };
 
 export const getCambioRol = async (req, res) => {
-
-  const sesionValida = await revisarSesion(req, res);
-  if (!sesionValida) return;
-
   try {
 
     const pool = await getConnection();
@@ -63,6 +56,7 @@ export const getCambioRol = async (req, res) => {
         roles: roles,
         msg: mensaje,
         data: {},
+        userRole: req.session.user.id_rol,
       }
     );
 
@@ -74,15 +68,9 @@ export const getCambioRol = async (req, res) => {
 };
 
 export const postCambioRol = async (req, res) => {
-
-  const sesionValida = await revisarSesion(req, res);
-  if (!sesionValida) return;
-
   try {  
       
-    console.log(req.body);
-
-    if (!req.body.id_rol || !req.body.id_rol) {
+    if (!req.body.id_rol || !req.body.id_usuario) {
       return res.redirect(
         url.format({
           pathname: "cambiarRol",
@@ -102,8 +90,8 @@ export const postCambioRol = async (req, res) => {
       .input("id_rol", sql.Int, req.body.id_rol)
       .execute("CambioRol");
 
-    var usuario = result.recordset;
-    
+    // sendMail(req.body.correo, "Cambio de rol", "Su rol ha sido cambiado. Por favor, revise su perfil para más detalles.");     
+
     return res.redirect(
       url.format({
         pathname: "/api/usuarios/cambiarRol",

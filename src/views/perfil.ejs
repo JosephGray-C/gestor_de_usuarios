@@ -1,0 +1,32 @@
+<%- include('template/header') %>
+
+<main class="profile-container">
+
+    <div class="profile-card">
+
+        <h1 class="title">Perfil de Usuario</h1>
+
+        <div class="profile-info">
+            <div class="input-group">
+                <label><strong>Nombre de Usuario:</strong></label>
+                <p><%= usuario.nombre %></p>
+            </div>
+            <div class="input-group">
+                <label><strong>Edad:</strong></label>
+                <p><%= usuario.edad %> años</p>
+            </div>
+            <div class="input-group">
+                <label><strong>Identificación:</strong></label>
+                <p><%= usuario.identificacion %></p>
+            </div>
+            <div class="input-group">
+                <label><strong>Correo:</strong></label>
+                <p><%= usuario.correo %></p>
+            </div>
+        </div>
+   
+    </div>
+
+</main>
+
+<%- include('template/footer') %>

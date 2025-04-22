@@ -5,7 +5,9 @@
 <div class="main-container">
     <div class="swiper-container">
       <div class="swiper-wrapper">
+        <% let tieneVacaciones = false; %>
             <% vacaciones.forEach(vacacion => { %>
+              <% tieneVacaciones = true; %>
                 <% if (vacacion.estado == 'Pendiente') { %>
                     <div class="swiper-slide"> 
                         <div class="form-container-vacacion-estado">
@@ -87,6 +89,7 @@
 
                                 <input type="hidden" name="id_vacacion" id="id_vacacion" value="<%= vacacion.vacacion_id %>">
                                 <input type="hidden" name="id_usuario" id="id_usuario" value="<%= vacacion.empleado_id %>">
+                                <input type="hidden" name="correo" id="correo" value="<%= vacacion.correo %>">
 
                                 <div class="flex">
                                     <div class="input-group">
@@ -104,13 +107,18 @@
                     </div>
                 <% } %>
             <% }) %>
-    </div>
 
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-  </div>
+        </div>
+        
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
 </div>
+
+<% if (!tieneVacaciones) { %>
+    <p class="null">Aún no vacaciones pendientes.</p>
+<% } %>
 
 <!--  -->
 

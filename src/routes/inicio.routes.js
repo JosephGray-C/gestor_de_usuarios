@@ -1,14 +1,13 @@
 import { Router } from "express";
 import {
-  getLogin,
-  postLogin
-} from "../controllers/login.controller.js";
+  getInicio
+} from "../controllers/inicio.controller.js";
 
 import { verificarSesion } from "../middlewares/auth.js";
 
 const router = Router();
 
-router.get("/", getLogin);  
-router.post("/", postLogin);
+router.get("/", verificarSesion, getInicio);  
+// router.post("/", );
 
 export default router;
