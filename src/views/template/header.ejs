@@ -73,6 +73,15 @@
 
              <a class="btn" href="/perfil">Perfil</a>
 
+             <!-- Billing/Trial Information Link -->
+             <a class="btn" href="/billing" style="background-color: #4CAF50; color: white;">
+               <% if (trialInfo && trialInfo.isProtected) { %>
+                 🛡️ Prueba Gratuita
+               <% } else { %>
+                 💳 Facturación
+               <% } %>
+             </a>
+
               <% if (userRole > 1) { %> 
                 <div class="dropdown">
                   <button class="btn dropdown-toggle">Usuarios </button>

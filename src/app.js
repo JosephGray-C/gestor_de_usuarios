@@ -11,10 +11,12 @@ import loginRoutes from "./routes/login.routes.js";
 import registroRoutes from "./routes/registro.routes.js";
 import inicioRoutes from "./routes/inicio.routes.js";
 import perfilRoutes from "./routes/perfil.routes.js";
+import billingRoutes from "./routes/billing.routes.js";
 
 import cerrarSesion from "./routes/cerrarSesion.routes.js";
 
 import { noCache } from "./middlewares/cache.js";
+import { billingProtection } from "./middlewares/billingProtection.js";
 
 const app = express();
 
@@ -43,6 +45,9 @@ app.use(
 
 app.use(noCache); 
 
+// Billing protection middleware - prevents charges during free trial
+app.use(billingProtection);
+
 app.use((req, res, next) => {
   res.locals.isAuthenticated = !!req.session.user;
   next();
@@ -55,6 +60,8 @@ app.use('/', loginRoutes);
 app.use('/inicio', inicioRoutes);
 
 app.use('/perfil', perfilRoutes);
+
+app.use('/billing', billingRoutes);
 
 app.use("/api", usuariosRoutes);
 app.use("/api", vacacionesRoutes);

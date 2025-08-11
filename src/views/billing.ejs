@@ -1,0 +1,92 @@
+<%- include('template/header') %>
+
+<main class="profile-container">
+    <div class="profile-card">
+        <h1 class="title">Información de Facturación</h1>
+
+        <!-- Trial Status Information -->
+        <% if (usuario.subscription_status === 'free_trial') { %>
+        <div class="trial-status" style="background: #e8f5e8; border: 2px solid #4CAF50; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+            <h2 style="color: #2E7D32; margin: 0 0 15px 0;">🛡️ Protección de Facturación Activa</h2>
+            <div style="color: #2E7D32; line-height: 1.6;">
+                <p><strong>Estado Actual:</strong> Período de Prueba Gratuita</p>
+                <% if (usuario.days_remaining > 0) { %>
+                    <p><strong>Días Restantes:</strong> <%= usuario.days_remaining %> días</p>
+                    <p><strong>Finaliza:</strong> <%= new Date(usuario.trial_end_date).toLocaleDateString('es-ES') %></p>
+                <% } %>
+                <p style="font-weight: bold; background: #c8e6c9; padding: 10px; border-radius: 5px; margin: 15px 0;">
+                    ✓ SU CUENTA ESTÁ PROTEGIDA CONTRA CUALQUIER CARGO
+                </p>
+                <ul style="margin: 15px 0; padding-left: 20px;">
+                    <li>No se realizarán cargos automáticos durante su prueba</li>
+                    <li>No se requiere información de tarjeta de crédito</li>
+                    <li>Puede cancelar en cualquier momento sin penalización</li>
+                    <li>Acceso completo a todas las funciones del sistema</li>
+                </ul>
+            </div>
+        </div>
+        <% } %>
+
+        <!-- Billing History Section -->
+        <div class="billing-history" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+            <h3 style="color: #495057; margin: 0 0 15px 0;">📋 Historial de Facturación</h3>
+            <% if (usuario.subscription_status === 'free_trial') { %>
+                <p style="color: #6c757d; text-align: center; font-style: italic; margin: 20px 0;">
+                    No hay cargos durante el período de prueba gratuita.<br>
+                    <strong>Total facturado: $0.00</strong>
+                </p>
+            <% } else { %>
+                <p style="color: #6c757d;">Historial de facturación para suscriptores pagos aparecería aquí.</p>
+            <% } %>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="billing-faq" style="background: #ffffff; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px;">
+            <h3 style="color: #495057; margin: 0 0 15px 0;">❓ Preguntas Frecuentes</h3>
+            
+            <div style="margin-bottom: 15px;">
+                <h4 style="color: #343a40; margin: 0 0 5px 0;">¿Por qué me cobraron durante mi prueba gratuita?</h4>
+                <p style="color: #6c757d; margin: 0;">
+                    <strong>No debería haber cargos durante su prueba gratuita.</strong> Nuestro sistema tiene protección 
+                    automática contra facturación durante el período de prueba. Si ve algún cargo, por favor contáctenos 
+                    inmediatamente para resolverlo.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <h4 style="color: #343a40; margin: 0 0 5px 0;">¿Cuándo comenzará la facturación?</h4>
+                <p style="color: #6c757d; margin: 0;">
+                    La facturación solo comenzará después de que expire su período de prueba de 30 días y 
+                    elija continuar con una suscripción paga.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <h4 style="color: #343a40; margin: 0 0 5px 0;">¿Cómo puedo cancelar mi cuenta?</h4>
+                <p style="color: #6c757d; margin: 0;">
+                    Puede cancelar su cuenta en cualquier momento desde la configuración de su perfil. 
+                    No hay penalizaciones por cancelación durante el período de prueba.
+                </p>
+            </div>
+
+            <div>
+                <h4 style="color: #343a40; margin: 0 0 5px 0;">¿Qué pasa después de la prueba gratuita?</h4>
+                <p style="color: #6c757d; margin: 0;">
+                    Después de 30 días, se le solicitará que elija un plan de suscripción para continuar 
+                    usando el servicio. No se realizarán cargos automáticos sin su consentimiento explícito.
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Support -->
+        <div class="support-contact" style="background: #e3f2fd; border: 1px solid #2196F3; border-radius: 8px; padding: 15px; margin-top: 20px; text-align: center;">
+            <h4 style="color: #1976D2; margin: 0 0 10px 0;">💬 ¿Necesita Ayuda?</h4>
+            <p style="color: #1976D2; margin: 0;">
+                Si tiene preguntas sobre facturación o ve cargos inesperados, 
+                contáctenos inmediatamente para obtener asistencia.
+            </p>
+        </div>
+    </div>
+</main>
+
+<%- include('template/footer') %>
