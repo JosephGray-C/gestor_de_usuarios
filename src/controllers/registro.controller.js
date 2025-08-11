@@ -49,11 +49,14 @@ export const postRegistro = async (req, res) => {
 
     req.session.user = user;
 
+    // Calculate trial days remaining for welcome message
+    const daysRemaining = user.days_remaining || 30;
+
     return res.redirect(
       url.format({
         pathname: "/inicio",
         query: {
-          msg: "Usuario creado correctamente",
+          msg: `¡Bienvenido! Su período de prueba gratuita de 30 días ha comenzado. Quedan ${daysRemaining} días. Durante este período, su cuenta está protegida contra cualquier cargo.`,
         },
       })
     );

@@ -6,6 +6,17 @@
 
           <p class="title">Registro</p>
 
+          <!-- Free Trial Notice -->
+          <div class="trial-notice" style="background: #e8f5e8; border: 2px solid #4CAF50; border-radius: 8px; padding: 15px; margin-bottom: 20px; text-align: center;">
+              <h3 style="color: #2E7D32; margin: 0 0 10px 0;">🎉 ¡Prueba Gratuita de 30 Días!</h3>
+              <p style="color: #2E7D32; margin: 0; font-weight: bold;">
+                  ✓ Sin cargos durante el período de prueba<br>
+                  ✓ Acceso completo a todas las funciones<br>
+                  ✓ Protección contra facturación automática<br>
+                  ✓ Cancela en cualquier momento sin costo
+              </p>
+          </div>
+
           <form action="/registro" method="post">
 
               <div class="input-group">
@@ -32,8 +43,19 @@
                 <label for="contrasenia">Contraseña</label>
                 <input id="contrasenia" name="contrasenia" type="password" />
               </div>
+
+              <!-- Terms and conditions for free trial -->
+              <div class="trial-terms" style="background: #f5f5f5; border: 1px solid #ddd; border-radius: 5px; padding: 10px; margin: 15px 0; font-size: 12px;">
+                  <p style="margin: 0; color: #666;">
+                      <strong>Términos de la Prueba Gratuita:</strong><br>
+                      • Su período de prueba de 30 días comienza inmediatamente<br>
+                      • <strong>NO se realizarán cargos durante el período de prueba</strong><br>
+                      • Puede cancelar en cualquier momento sin penalizaciones<br>
+                      • Después de 30 días, deberá actualizar para continuar usando el servicio
+                  </p>
+              </div>
                 
-              <button style="margin-top:6%;" class="sign">Regístrarse</button>
+              <button style="margin-top:6%;" class="sign">Comenzar Prueba Gratuita</button>
 
           </form>
 

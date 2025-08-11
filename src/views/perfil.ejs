@@ -6,6 +6,28 @@
 
         <h1 class="title">Perfil de Usuario</h1>
 
+        <!-- Trial Status Section -->
+        <% if (usuario.subscription_status === 'free_trial') { %>
+        <div class="trial-status" style="background: #e8f5e8; border: 2px solid #4CAF50; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+            <h3 style="color: #2E7D32; margin: 0 0 10px 0;">🛡️ Estado de Prueba Gratuita</h3>
+            <div style="color: #2E7D32;">
+                <p><strong>Estado:</strong> <%= usuario.trial_status_message %></p>
+                <% if (usuario.days_remaining > 0) { %>
+                    <p><strong>Días restantes:</strong> <%= usuario.days_remaining %> días</p>
+                    <p><strong>Finaliza:</strong> <%= new Date(usuario.trial_end_date).toLocaleDateString('es-ES') %></p>
+                <% } %>
+                <% if (usuario.billing_protected) { %>
+                    <p style="font-weight: bold; color: #1B5E20;">✓ PROTEGIDO CONTRA CARGOS - No se realizarán facturaciones</p>
+                <% } %>
+            </div>
+        </div>
+        <% } else if (usuario.trial_expired) { %>
+        <div class="trial-status" style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+            <h3 style="color: #856404; margin: 0 0 10px 0;">⚠️ Período de Prueba Expirado</h3>
+            <p style="color: #856404;">Su período de prueba gratuita ha finalizado. Para continuar usando el servicio, por favor actualice su suscripción.</p>
+        </div>
+        <% } %>
+
         <div class="profile-info">
             <div class="input-group">
                 <label><strong>Nombre de Usuario:</strong></label>
@@ -23,7 +45,24 @@
                 <label><strong>Correo:</strong></label>
                 <p><%= usuario.correo %></p>
             </div>
+            <% if (usuario.nombre_rol) { %>
+            <div class="input-group">
+                <label><strong>Rol:</strong></label>
+                <p><%= usuario.nombre_rol %></p>
+            </div>
+            <% } %>
         </div>
+
+        <!-- Billing Protection Notice -->
+        <% if (usuario.billing_protected) { %>
+        <div class="billing-protection" style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin-top: 20px;">
+            <h4 style="color: #495057; margin: 0 0 10px 0;">💳 Información de Facturación</h4>
+            <p style="color: #6c757d; margin: 0;">
+                Su cuenta está actualmente protegida contra cualquier cargo automático. 
+                Durante su período de prueba gratuita, <strong>no se le cobrará ninguna tarifa</strong>.
+            </p>
+        </div>
+        <% } %>
    
     </div>
 
